@@ -1,79 +1,95 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import App from "../App"
 
 export default function RegisterForm() {
-    const [profile, setProfile] = useState({
-      username: "",
-      email: "",
-      city: "",
-      createPassword: "",
-      repeatPassword: "",
-    });
+
+  const [profile, setProfile] = useState({
+    username: "",
+    email: "",
+    city: "",
+    createPassword: "",
+    repeatPassword: "",
+  })
+
+  const [valid, setValid] = useState(false)
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const element: HTMLInputElement = event.target;
+    const { name, value } = element;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value
+    }))
+  }
   
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const element: HTMLInputElement = event.target
-      const { name, value } = element
-      setProfile((prevProfile) => ({
-        ...prevProfile,
-        [name]: value
-      }));
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    var postReq = JSON.stringify({
+      username: profile.username,
+      email: profile.email,
+      city: profile.city,
+      pw_hash: profile.createPassword
+    })
+    // uncomment when hooking up to backend
+    // fetch("/users", {
+    //   method: "POST",
+    //   body: postReq,
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    console.log(`Sent the following:
+    
+    ${postReq}`)
+  }
+
+  useEffect(() => {
+    //set more form validations here if needed
+    if (profile.username !== "" && profile.email !== "" && profile.city !== "" && profile.createPassword !== "" && profile.repeatPassword !== "") {
+      profile.createPassword === profile.repeatPassword ? setValid(true) : setValid(false)
+    } else {setValid(false)}
+  }, [profile])
   
-    };
-  
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-      if (profile.createPassword!==profile.repeatPassword) {
-        console.log("Passwords don't match")
-        return
-      }
-      alert(JSON.stringify({
-        username: profile.username,
-        email: profile.email,
-        city: profile.city,
-        pw_hash: profile.createPassword
-      }))
-    }
-  
-    return (
+  return(
       <form onSubmit={handleSubmit}>
         <h2>Create new account</h2>
         <input
-          value={profile.username}
+          value={profile.username || ""}
           onChange={handleChange}
           name="username"
           type="text"
           placeholder="Username*"
         />
         <input
-          value={profile.email}
-           onChange={handleChange}
+          value={profile.email || ""}
+          onChange={handleChange}
           type="text"
           name="email"
           placeholder="Email Address*"
         />
         <input
-          value={profile.city}
-           onChange={handleChange}
+          value={profile.city || ""}
+          onChange={handleChange}
           type="text"
           name="city"
           placeholder="City*"
         />
         <input
-          value={profile.createPassword}
-           onChange={handleChange}
+          value={profile.createPassword || ""}
+          onChange={handleChange}
           type="password"
           name="createPassword"
           placeholder="Create Password*"
         />
         <input
-          value={profile.repeatPassword}
-           onChange={handleChange}
+          value={profile.repeatPassword || ""}
+          onChange={handleChange}
           type="password"
           name="repeatPassword"
           placeholder="Repeat Password*"
         />
         <a>Already Registered?</a>
-        <button type="submit">Submit</button>
+        <button disabled={!valid} type="submit">Submit</button>
       </form>
-      
-    );
+  )
   }
