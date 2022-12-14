@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
-import App from "../App"
 
-export default function RegisterForm() {
+export default function RegisterForm(props: any) {
 
   const [profile, setProfile] = useState({
     username: "",
@@ -31,7 +30,7 @@ export default function RegisterForm() {
       pw_hash: profile.createPassword
     })
     // uncomment when hooking up to backend
-    // fetch("/users", {
+    // await fetch("/users", {
     //   method: "POST",
     //   body: postReq,
     //   headers: {
@@ -41,6 +40,7 @@ export default function RegisterForm() {
     console.log(`Sent the following:
     
     ${postReq}`)
+    props.onSubmit(true)
   }
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function RegisterForm() {
   }, [profile])
   
   return(
-      <form onSubmit={handleSubmit}>
+      <form id="regForm" onSubmit={handleSubmit}>
         <h2>Create new account</h2>
         <input
           value={profile.username || ""}
@@ -74,6 +74,7 @@ export default function RegisterForm() {
           name="city"
           placeholder="City*"
         />
+        <br />
         <input
           value={profile.createPassword || ""}
           onChange={handleChange}
@@ -88,7 +89,7 @@ export default function RegisterForm() {
           name="repeatPassword"
           placeholder="Repeat Password*"
         />
-        <a>Already Registered?</a>
+        <a href="/login">Already Registered?</a>
         <button disabled={!valid} type="submit">Submit</button>
       </form>
   )

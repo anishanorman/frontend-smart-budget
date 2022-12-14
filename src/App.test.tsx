@@ -1,4 +1,4 @@
-import RegisterForm from "./components/RegisterForm"
+import RegisterForm from "./components/forms/RegisterForm"
 
 // Use `jest.fn` to create a mock function
 const mockFetch = jest.fn();
