@@ -1,21 +1,16 @@
-import Btn from "../components/Btn";
-import Container from "../components/Container";
+import IncomeForm from "../components/forms/IncomeForm";
 import Logo from "../components/Logo";
 import Nav from "../components/Nav";
 
-export default function Home(props: any) {
-    console.log("Home: " + props.loggedIn)
-    if (props.loggedIn) {
+export default function Income(props: any) {
+    if (props.LoggedIn) {
         return(
             <div className="App">
                 <Logo />
                 <div className="pageContent">
-                    <Container header="Income" items="income"/>
-                    <Btn sendTo="/income" className="add" content="Add +" />
-                    <Container header="Outgoings" items="budget_items"/>
-                    <Btn sendTo="/outgoing" className="add" content="Add +" />
+                    <IncomeForm />
                 </div>
-                <Nav />
+                <Nav />                
             </div>
         )
     } else {
@@ -30,5 +25,4 @@ export default function Home(props: any) {
             </div>
         )
     }
-    
 }
