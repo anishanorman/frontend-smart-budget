@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react"
 
-export default function IncomeForm(props: any) {
-
-  const [revenue, setRevenue] = useState({
+export default function IncomeForm (props: any) {
+  
+  const [profile, setProfile] = useState({
     revenue_type:"",
     amount: ""
-   
   })
+ 
 
   const [valid, setValid] = useState(false)
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const element: HTMLInputElement = event.target;
     const { name, value } = element;
-    setRevenue((prevRevenue) => ({
-      ...prevRevenue,
+    setProfile((prevProfile) => ({
+      ...prevProfile,
       [name]: value
     }))
   }
@@ -22,8 +22,8 @@ export default function IncomeForm(props: any) {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     var postReq = JSON.stringify({
-      revenue: revenue.revenue_type,
-      amount: revenue.amount
+      revenue_type: profile.revenue_type,
+      amount: profile.amount
     })
     // uncomment when hooking up to backend
     // await fetch("/users", {
@@ -41,30 +41,30 @@ export default function IncomeForm(props: any) {
 
   useEffect(() => {
     //set more form validations here if needed
-    if (revenue.revenue_type !== "" && revenue.amount !== "") {
-      typeof revenue.amount === 'number'? setValid(true) : setValid(false)
+    if (profile.revenue_type !== "" && profile.amount !== "") {
+      typeof profile.amount === 'number'? setValid(true) : setValid(false)
     } else {setValid(false)}
-  }, [revenue])
+  }, [profile])
   
   return(
-      <form id="RegForm" onSubmit={handleSubmit}>
-        <h2> Add revenue </h2>
+      <form id="regForm" onSubmit={handleSubmit}>
+        <h2>Add Revenue</h2>
         <input
-          value={revenue.revenue_type || ""}
+          value={profile.revenue_type || ""}
           onChange={handleChange}
-          name="Revenue"
-            type="text"
-          placeholder="Enter Type of Revenue"
+          name="revenue_type"
+          type="text"
+          placeholder="Type of Revenue"
         />
-      <br />
+        <br />
         <input
-          value={revenue.amount || ""}
+          value={profile.amount || ""}
           onChange={handleChange}
-          name= "Amount"
-            type= "number"
-          placeholder="Enter Amount"
+          type="number"
+          name="amount"
+          placeholder="Enter The Monthly Amount"
         />
         <button disabled={!valid} type="submit">Submit</button>
       </form>
   )
-  }
+}
