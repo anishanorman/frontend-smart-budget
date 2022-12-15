@@ -9,6 +9,7 @@ import { useState } from "react"
 export default function Edit(props: any) {
 
     const [data, setData] = useState(mockData)
+    console.log(data)
 
     function handleDelete(type: any, indexToRemove: any) {
         if(type==="income") {
