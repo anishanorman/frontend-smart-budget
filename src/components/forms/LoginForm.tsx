@@ -32,24 +32,24 @@ export default function LoginForm (props:any){
 
 
     return (
-        <form id="regForm" onSubmit={handleSubmit}>
+        <form id="LogForm" onSubmit={handleSubmit}>
            <h2> Please login</h2>
             <input
                 value={profile.username || ""}
                 onChange={handleChange}
-                name="username"
+                name="Username"
                  type="text"
                 placeholder="Enter Username"
             />
+            <br />
             <input
-          value={profile.userPassword || ""}
-          onChange={handleChange}
-          type="password"
-          name="userPassword"
-          placeholder=" Enter Password"
-        />
-
-        <button disabled={!valid} type="submit">Submit</button>
+                value={profile.userPassword || ""}
+                onChange={handleChange}
+                name="Password"
+                 type="text"
+                placeholder="Enter Password"
+            />
+          <button disabled={!valid} type="submit">Submit</button>
         </form>
       );
     

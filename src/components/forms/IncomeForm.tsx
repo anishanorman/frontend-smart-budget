@@ -47,22 +47,22 @@ export default function IncomeForm(props: any) {
   }, [revenue])
   
   return(
-      <form id="regForm" onSubmit={handleSubmit}>
-        <h2> Addd revenue type </h2>
+      <form id="RegForm" onSubmit={handleSubmit}>
+        <h2> Add revenue </h2>
         <input
           value={revenue.revenue_type || ""}
           onChange={handleChange}
-          name="Revenue Type"
-          type="text"
-          placeholder="Revenue Type"
+          name="Revenue"
+            type="text"
+          placeholder="Enter Type of Revenue"
         />
-        <br />
+      <br />
         <input
           value={revenue.amount || ""}
           onChange={handleChange}
-          name= "Monthly Amount"
-          type="number"
-          placeholder="Monthly Amount"
+          name= "Amount"
+            type= "number"
+          placeholder="Enter Amount"
         />
         <button disabled={!valid} type="submit">Submit</button>
       </form>
