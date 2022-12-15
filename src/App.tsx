@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter, Route, Routes } from "react-router-dom"
+import { HashRouter, BrowserRouter, Route, Routes } from "react-router-dom"
 import Edit from './pages/Edit';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -11,7 +11,7 @@ import Outgoing from './pages/Outgoing';
 function App() {
 
   return (
-         <HashRouter>
+         <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/edit" element={<Edit />} />
@@ -20,7 +20,7 @@ function App() {
               <Route path="/income" element={<ViewIncome />} />
               <Route path="/outgoing" element={<Outgoing />} />
             </Routes>
-         </HashRouter>
+         </BrowserRouter>
   )
 }
 
