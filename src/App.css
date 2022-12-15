@@ -98,8 +98,8 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr 30px 30px;
-  padding: 5px
+  grid-template-columns: 20% 1fr auto;
+  margin: 10px 20px 10px 20px
 }
 
 h4 {
@@ -119,4 +119,19 @@ p {
 
 #regForm input {
   display: block;
+}
+
+.icons {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.icons img {
+  height:15px;
+}
+
+.icons button {
+  all: unset;
+  cursor: pointer
 }

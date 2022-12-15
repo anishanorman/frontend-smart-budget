@@ -1,25 +1,25 @@
 import { useState,useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Home from './pages/Home';
+import Edit from './pages/Edit';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import ViewIncome from './pages/Income';
-import ViewFixedOutgoings from './pages/FixedOutgoing';
+import Index from './pages/Index';
+import Outgoing from './pages/Outgoing';
 
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true)
-
   return (
          <BrowserRouter>
             <Routes>
-              <Route path="/home" element={<Home loggedIn={loggedIn} />} />
-              <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-              <Route path="/register" element={<Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-              <Route path="/income" element={<ViewIncome loggedIn={loggedIn} />} />
-              <Route path="/outgoing" element={<ViewFixedOutgoings loggedIn={loggedIn} />} />
+              <Route path="/" element={<Index />} />
+              <Route path="/edit" element={<Edit />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/income" element={<ViewIncome />} />
+              <Route path="/outgoing" element={<Outgoing />} />
             </Routes>
          </BrowserRouter>
   )
