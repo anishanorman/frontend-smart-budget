@@ -4,7 +4,6 @@ import deleteIcon from "../assets/delete-icon.png"
 
 export default function MakeTable(props: any) {
     var data=props.data
-    console.log(data)
 
     if (!props.data || props.data.length<1) {
         return(
@@ -40,7 +39,4 @@ export default function MakeTable(props: any) {
             </div>
         )
     }
-
-    
-
 }
