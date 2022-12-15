@@ -3,7 +3,7 @@ import homeButton from "../assets/home-button.png"
 export default function Nav() {
     return(
         <div className="nav">
-            <a id="homeButton" href="/">
+            <a id="homeButton" href="/edit">
                 <img id="filledLogo" src={homeButton} alt="Smart Budget App Logo"/>
             </a>
             
