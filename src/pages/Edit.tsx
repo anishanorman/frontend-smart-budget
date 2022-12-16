@@ -5,6 +5,7 @@ import MakeTable from "../components/MakeTable";
 import Nav from "../components/Nav";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { isTemplateExpression } from "typescript";
 
 export default function Edit(props: any) {
 
@@ -51,13 +52,31 @@ export default function Edit(props: any) {
 
     }
 
+    function toAllocate() {
+        let total = 0
+        data.income.forEach((income) => {
+            total+=income.amount
+        })
+        data.budget_items.forEach((item) => {
+            total-=item.amount
+        })
+        if (total>0) {
+            return (`Left to allocate: £${total}`)
+        } else if (total<0) {
+            return(`Over-budget by £${-total}`)
+        } else {
+            return(`Perfect!`)
+        }
+        
+    }
+
     return(
         <div className="App">
             <Logo />
             <div className="pageContent">
                 <Container header="Income" content={<MakeTable handleDelete={handleDelete} data={data.income} content="income" editable="true"/>}/>
                 <Btn sendTo="/income" className="add" content="Add +" />
-                <Container header="Outgoings" content={<MakeTable handleDelete={handleDelete} data={data.budget_items} content="outgoings" editable="true"/>}/>
+                <Container header="Outgoings" toAllocate={toAllocate()} content={<MakeTable handleDelete={handleDelete} data={data.budget_items} content="outgoings" editable="true"/>}/>
                 <Btn sendTo="/outgoing" className="add" content="Add +" />
             </div>
             <Nav save="true" edit="false" handleSave={handleSave}/>
