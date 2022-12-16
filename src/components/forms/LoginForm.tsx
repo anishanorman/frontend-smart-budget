@@ -1,65 +1,64 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 
-export default function LoginForm (props: any) {
-  
-  const [profile, setProfile] = useState({
+export default function LoginForm(props: any) {
+  // initialize the state variables for the form data
+  const [formData, setFormData] = useState({
     username: "",
     password: "",
   })
 
+  // initialize the state variable for the button useability
   const [valid, setValid] = useState(false)
 
+  //handle changes to the form inputs
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const element: HTMLInputElement = event.target;
     const { name, value } = element;
-    setProfile((prevProfile) => ({
-      ...prevProfile,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value
     }))
   }
-  
+
+  // handle form submission
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    var postReq = JSON.stringify({
-      username: profile.username,
-      pw_hash: profile.password
-    })
-    // uncomment when hooking up to backend
-    // await fetch("/users", {
-    //   method: "POST",
-    //   body: postReq,
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    console.log(`Sent the following:
-    
-    ${postReq}`)
-    props.onSubmit(true)
+    event.preventDefault();
+    console.log(`Form data: ${JSON.stringify(formData)}`);
+
+    // you can add additional code here to handle the form submission, such as sending the form data to a backend server
   }
 
-  // useEffect(() => {
-  //   //set more form validations here if needed
-  // }, [profile])
+  // UseEffect hook  that allows you to perform side effects in function components
+  useEffect(() => {
+    //set more form validations here if needed
+    if (formData.username !== "" && formData.password !== "") {
+      setValid(true)
+    } else {
+      setValid(false)
+    }
+  }, [formData])
   
   return(
-      <form id="logForm" onSubmit={handleSubmit}>
-        <h2>Please Login</h2>
+      <form id="loginForm" onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <input
-          value={profile.username || ""}
+          value={formData.username || ""}
           onChange={handleChange}
           name="username"
           type="text"
-          placeholder="Username"
+          placeholder="Enter Username"
         />
         <br />
         <input
-          value={profile.password || ""}
+          value={formData.password || ""}
           onChange={handleChange}
           type="password"
           name="password"
-          placeholder="Create Password"
+          placeholder="Enter Password"
         />
+        <br />
+        <a href="/register">Not Registered?</a>
+        <br />
         <button disabled={!valid} type="submit">Submit</button>
       </form>
   )
