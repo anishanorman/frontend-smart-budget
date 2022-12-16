@@ -38,12 +38,9 @@ h3 {
   bottom: 20px;
   color: white;
   background: #2D695B;
-  width: 150px;
-  display: inline;
+  width: 140px;
   border-radius: 15px;
   height: 30px;
-  display: grid;
-  grid-template-columns: auto;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
@@ -71,12 +68,13 @@ body {
 }
 
 #homeButton {
-  margin: auto;
   height: 40px;
   width: 40px;
   border-radius: 50%;
   background: white;
-  position: relative;
+  position: fixed;
+  left:50%;
+  transform: translateX(-50%);
   top: -5px;
 }
 
@@ -131,7 +129,27 @@ p {
   height:15px;
 }
 
-.icons button {
+.icons button, .nav button {
   all: unset;
-  cursor: pointer
+  cursor: pointer;
+  height: 18px;
+}
+
+.editButtonWhite img, .saveButton img{
+  height: 18px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.editButtonWhite {
+  position: fixed;
+  left: 15%;
+  top: 50%;
+}
+
+button.saveButton {
+  position: fixed;
+  right: 13%;
+  height: 90%;
 }

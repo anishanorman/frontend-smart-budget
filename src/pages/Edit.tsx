@@ -3,13 +3,22 @@ import Container from "../components/Container";
 import Logo from "../components/Logo";
 import MakeTable from "../components/MakeTable";
 import Nav from "../components/Nav";
-import { mockData } from "../mockData";
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Edit(props: any) {
 
-    const [data, setData] = useState(mockData)
-    console.log(data)
+    const [data, setData] = useState({
+        "income": [{ "id": 0, "name": "Salary", "amount": 1800 }, { "id": 1, "name": "Dividends", "amount": 50}],
+        "budget_items": [
+            { "id": 0, "type": "fixed", "name": "Rent", "amount": 900 },
+            { "id": 1, "type": "fixed", "name": "Bills", "amount": 200 },
+            { "id": 2, "type": "variable", "name": "Shopping", "amount": 200 },
+            { "id": 3, "type": "variable", "name": "Coffee", "amount": 30 }
+        ]
+})
+
+    const navigate = useNavigate()
 
     function handleDelete(type: any, indexToRemove: any) {
         if(type==="income") {
@@ -32,6 +41,16 @@ export default function Edit(props: any) {
 
     }
 
+    function handleSave() {
+        // post req to backend using data
+        // 
+        // 
+        // 
+        navigate("/")
+        console.log(data)
+
+    }
+
     return(
         <div className="App">
             <Logo />
@@ -41,7 +60,7 @@ export default function Edit(props: any) {
                 <Container header="Outgoings" content={<MakeTable handleDelete={handleDelete} data={data.budget_items} content="outgoings" editable="true"/>}/>
                 <Btn sendTo="/outgoing" className="add" content="Add +" />
             </div>
-            <Nav />
+            <Nav save="true" edit="false" handleSave={handleSave}/>
         </div>
     )
     

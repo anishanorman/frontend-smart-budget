@@ -8,7 +8,7 @@ export default function Icon(props: any) {
         )
     } else {
         return(
-            <button onClick={props.onClick} className={props.className}>
+            <button type="button" onClick={props.onClick} className={props.className}>
                 <img src={props.src} alt={props.alt} />
             </button>
         )
