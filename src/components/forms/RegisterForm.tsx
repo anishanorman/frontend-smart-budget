@@ -123,7 +123,7 @@ export default function RegisterForm(props: any) {
       placeholder="Enter County"
       />
       <br />
-      <a href="/register">Not Registered?</a>
+      <a href="/login"> Already Registered?</a>
       <br />
       <button disabled={!valid} type="submit">Submit</button>
       </form>
