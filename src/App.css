@@ -94,12 +94,6 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 20% 1fr auto;
-  margin: 10px 20px 10px 20px
-}
-
 h4 {
   margin: 0
 }
@@ -121,15 +115,15 @@ p {
 
 .icons {
   display: flex;
-  gap: 8px;
-  justify-content: space-between;
+  gap:5px;
+  justify-content: right;
 }
 
 .icons img {
   height:15px;
 }
 
-.icons button, .nav button {
+.icons button, .nav button,  .increaseButton, .decreaseButton {
   all: unset;
   cursor: pointer;
   height: 18px;
@@ -152,4 +146,21 @@ button.saveButton {
   position: fixed;
   right: 13%;
   height: 90%;
+}
+
+.variableRow, .fixedRow {
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  margin: 10px 20px 10px 20px;
+}
+
+.decreaseButton img, .increaseButton img {
+  height: 90%;
+  position: relative;
+  top:20%
+}
+
+.variableAmount {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
 }
