@@ -3,13 +3,12 @@ import Container from "../components/Container";
 import Logo from "../components/Logo";
 import MakeTable from "../components/MakeTable";
 import Nav from "../components/Nav";
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { isTemplateExpression } from "typescript";
+import { useImmer } from "use-immer"
 
 export default function Edit(props: any) {
 
-    const [data, setData] = useState({
+    const [data, updateData] = useImmer({
         "income": [{ "id": 0, "name": "Salary", "amount": 1800 }, { "id": 1, "name": "Dividends", "amount": 50}],
         "budget_items": [
             { "id": 0, "type": "fixed", "name": "Rent", "amount": 900 },
@@ -23,7 +22,7 @@ export default function Edit(props: any) {
 
     function handleDelete(type: any, indexToRemove: any) {
         if(type==="income") {
-            setData(prev => {
+            updateData(prev => {
                 return {
                     income: (prev.income.filter(
                         (item) => prev.income.indexOf(item) !== indexToRemove
@@ -32,7 +31,7 @@ export default function Edit(props: any) {
                 }
             })
         } else {
-            setData(prev => {
+            updateData(prev => {
                 return {
                     income: prev.income,
                     budget_items: (prev.budget_items.filter((item) => prev.budget_items.indexOf(item) !== indexToRemove))
@@ -42,14 +41,24 @@ export default function Edit(props: any) {
 
     }
 
+    function increase(indexToIncrease: any) {
+        updateData(prev => {
+            prev.budget_items[indexToIncrease].amount+=10
+        })
+    }
+
+    function decrease(indexToIncrease: any) {
+        updateData(prev => {
+            prev.budget_items[indexToIncrease].amount-=10
+        })
+    }
+
     function handleSave() {
         // post req to backend using data
         // 
         // 
         // 
         navigate("/")
-        console.log(data)
-
     }
 
     function toAllocate() {
@@ -67,7 +76,6 @@ export default function Edit(props: any) {
         } else {
             return(`Perfect!`)
         }
-        
     }
 
     return(
@@ -76,7 +84,7 @@ export default function Edit(props: any) {
             <div className="pageContent">
                 <Container header="Income" content={<MakeTable handleDelete={handleDelete} data={data.income} content="income" editable="true"/>}/>
                 <Btn sendTo="/income" className="add" content="Add +" />
-                <Container header="Outgoings" toAllocate={toAllocate()} content={<MakeTable handleDelete={handleDelete} data={data.budget_items} content="outgoings" editable="true"/>}/>
+                <Container header="Outgoings" toAllocate={toAllocate()} content={<MakeTable increase={increase} decrease={decrease} handleDelete={handleDelete} data={data.budget_items} content="outgoings" editable="true"/>}/>
                 <Btn sendTo="/outgoing" className="add" content="Add +" />
             </div>
             <Nav save="true" edit="false" handleSave={handleSave}/>
