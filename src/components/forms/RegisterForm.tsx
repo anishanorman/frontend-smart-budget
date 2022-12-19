@@ -51,7 +51,7 @@ export default function RegisterForm(props: any) {
 
   useEffect(() => {
     // checks password strength to certain condtions 
-    let strength = CheckPasswordStr(formData.password);
+    let strength = CheckPasswordStr(formData.pw_hash);
     // Using the password strength to visual display the meter reading 
     PasswordMeterRd(strength);
   });
@@ -123,7 +123,6 @@ export default function RegisterForm(props: any) {
           type="text"
           placeholder="Enter City"
         />
-      <br />
       <br />
         <input
         value={formData.county || ""}
