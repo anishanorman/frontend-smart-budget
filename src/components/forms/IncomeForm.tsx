@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 export default function IncomeForm(props: any) {
+  console.log(props)
   // initialize the state variables for the form data
   const [formData, setFormData] = useState({
-    revenueType: "",
-    yearlyAmount: "",
-    monthlyAmount: "",
+    income_type: "",
+    annual: "",
+    month: "",
   });
 
   // initialize the state variable for the radio button selection
@@ -37,13 +38,12 @@ export default function IncomeForm(props: any) {
   // render the form
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Income Form</h2>
       <label>
         Revenue Type:
         <input
-          value={formData.revenueType || ""}
+          value={formData.income_type || ""}
           onChange={handleChange}
-          name="revenueType"
+          name="income_type"
           type="text"
           placeholder="Enter Revenue Type"
         />
@@ -52,15 +52,15 @@ export default function IncomeForm(props: any) {
       <label>
         <input
           type="radio"
-          value="yearlyAmount"
-          checked={selectedOption === "yearlyAmount"}
+          value="annual"
+          checked={selectedOption === "annual"}
           onChange={handleOptionChange}
         />
         Yearly Amount:
         <input
-          value={formData.yearlyAmount || ""}
+          value={formData.annual || ""}
           onChange={handleChange}
-          name="yearlyAmount"
+          name="annual"
           type="number"
           placeholder="Enter Yearly Amount"
         />
@@ -69,15 +69,15 @@ export default function IncomeForm(props: any) {
       <label>
         <input
           type="radio"
-          value="monthlyAmount"
-          checked={selectedOption === "monthlyAmount"}
+          value="month"
+          checked={selectedOption === "month"}
           onChange={handleOptionChange}
         />
         Monthly Amount:
         <input
-          value={formData.monthlyAmount || ""}
+          value={formData.month || ""}
           onChange={handleChange}
-          name="monthlyAmount"
+          name="month"
           type="number"
           placeholder="Enter Monthly Amount"
         />

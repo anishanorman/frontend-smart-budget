@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
+const backEndUrl = "https://rails-orqd.onrender.com"
+
+
 
 export default function RegisterForm(props: any) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    mobile: "",
-    password: "",
+    pw_hash: "",
     city: "",
     county: "",
+    country: "",
   });
 
   // initialize the state variable for the button useability
@@ -26,18 +29,26 @@ export default function RegisterForm(props: any) {
   }
 
   // handle form submission
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(`Form data: ${JSON.stringify(formData)}`);
-
-    // you can add additional code here to handle the form submission, such as sending the form data to a backend server
+    let response: any = await fetch(`${backEndUrl}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    response = await response.json()
+    sessionStorage.setItem("auth_token", response.token)
+    console.log(sessionStorage.getItem("auth_token"))
+    return response
   }
 
   // function that determines the strength of the password 
-  function checkPasswordStrength(password: string) {
-    if (password.length < 8) {
+  function checkPasswordStrength(pw_hash: string) {
+    if (pw_hash.length < 8) {
       return "Password Strength: Weak";
-    } else if (password.length >= 8 && password.length < 12) {
+    } else if (pw_hash.length >= 8 && pw_hash.length < 12) {
       return "Password Strength: Medium";
     } else {
       return "Password Strength: Strong";
@@ -46,21 +57,21 @@ export default function RegisterForm(props: any) {
 
   useEffect(() => {
     // Check password strength whenever password changes
-    setPasswordStrength(checkPasswordStrength(formData.password));
-  }, [formData.password]);
+    setPasswordStrength(checkPasswordStrength(formData.pw_hash));
+  }, [formData.pw_hash]);
 
   // UseEffect hook  that allows you to perform side effects in function components
   useEffect(() => {
     // set more form validations here if needed
 
-    const passwordStrength = checkPasswordStrength(formData.password);
+    const passwordStrength = checkPasswordStrength(formData.pw_hash);
     if (
       formData.username !== "" &&
       formData.email !== "" &&
-      formData.mobile !== "" &&
-      (formData.password !== "" && passwordStrength !== "Password Strength: Weak") &&
+      (formData.pw_hash !== "" && passwordStrength !== "Password Strength: Weak") &&
       formData.city !== "" &&
-      formData.county !== "")
+      formData.county !== "" &&
+      formData.country !== "")
      {
       setValid(true);
     } else {
@@ -90,17 +101,9 @@ export default function RegisterForm(props: any) {
       />
       <br />
       <input
-        value={formData.mobile || ""}
+        value={formData.pw_hash || ""}
         onChange={handleChange}
-        name="mobile"
-        type="mobile"
-        placeholder="Enter Mobile"
-      />
-      <br />
-      <input
-        value={formData.password || ""}
-        onChange={handleChange}
-        name="password"
+        name="pw_hash"
         type="password"
         placeholder="Enter Password"
       />
@@ -121,6 +124,13 @@ export default function RegisterForm(props: any) {
       name="county"
       type="text"
       placeholder="Enter County"
+      />
+      <input
+      value={formData.country || ""}
+      onChange={handleChange}
+      name="country"
+      type="text"
+      placeholder="Enter Country"
       />
       <br />
       <a href="/register">Not Registered?</a>
