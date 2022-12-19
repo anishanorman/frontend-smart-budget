@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import "./RegisterForm.css";
+import CheckPasswordStr from "./CheckPasswordStr";
+import PasswordMeterRd from "./PasswordMeterRd";
+
+
+
 
 export default function RegisterForm(props: any) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    mobile: "",
     password: "",
     city: "",
     county: "",
@@ -13,7 +18,7 @@ export default function RegisterForm(props: any) {
   // initialize the state variable for the button useability
   const [valid, setValid] = useState(false);
   // initialize the state variable for password strength 
-  const [passwordStrength, setPasswordStrength] = useState("");
+
 
   // handle changes to the form inputs
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -32,41 +37,36 @@ export default function RegisterForm(props: any) {
 
     // you can add additional code here to handle the form submission, such as sending the form data to a backend server
   }
+  
 
-  // function that determines the strength of the password 
-  function checkPasswordStrength(password: string) {
-    if (password.length < 8) {
-      return "Password Strength: Weak";
-    } else if (password.length >= 8 && password.length < 12) {
-      return "Password Strength: Medium";
-    } else {
-      return "Password Strength: Strong";
-    }
-  }
+  // UseEffect hook  that allows you to perform certain after effects in a function components
 
   useEffect(() => {
-    // Check password strength whenever password changes
-    setPasswordStrength(checkPasswordStrength(formData.password));
-  }, [formData.password]);
+    // checks password strength to certain condtions 
+    let strength = CheckPasswordStr(formData.password);
+    // Using the password strength to visual display the meter reading 
+    PasswordMeterRd(strength);
+  });
 
-  // UseEffect hook  that allows you to perform side effects in function components
   useEffect(() => {
+    // checks if conditions are met for the submit button to be useable
     // set more form validations here if needed
 
-    const passwordStrength = checkPasswordStrength(formData.password);
-    if (
-      formData.username !== "" &&
-      formData.email !== "" &&
-      formData.mobile !== "" &&
-      (formData.password !== "" && passwordStrength !== "Password Strength: Weak") &&
-      formData.city !== "" &&
-      formData.county !== "")
-     {
-      setValid(true);
-    } else {
-      setValid(false);
+    // a varriable that can only store the constructor/object's properties value.
+    const formValues = Object.values(formData);
+    // the varriable becomes inclusive of all properties while the function checks if the properties !==v resulting in a boolean 
+    const isFormFilled= formValues.every(checkValue)
+    function checkValue(x:any){
+      return x !== ""
+    }
+    if (isFormFilled === true){
+      setValid(true)
+    }else{
+      setValid(false)
     }
   }, [formData]);
+
+
 
   // render the form
   return (
@@ -81,6 +81,7 @@ export default function RegisterForm(props: any) {
         placeholder="Enter Username"
       />
       <br />
+      <br />
       <input
         value={formData.email || ""}
         onChange={handleChange}
@@ -89,44 +90,47 @@ export default function RegisterForm(props: any) {
         placeholder="Enter Email"
       />
       <br />
-      <input
-        value={formData.mobile || ""}
-        onChange={handleChange}
-        name="mobile"
-        type="mobile"
-        placeholder="Enter Mobile"
-      />
       <br />
-      <input
-        value={formData.password || ""}
-        onChange={handleChange}
-        name="password"
-        type="password"
-        placeholder="Enter Password"
-      />
+        <input
+          id= "password"
+          value={formData.password || ""}
+          onChange={handleChange}
+          name="password"
+          type="password"
+          placeholder="Enter Password"
+        />
+        <div id = "promt">
+          <span></span>
+        </div>
+        <div id="password_meter">
+          <div id="password_indicator">
+            <span>Weak</span>
+          </div>
+        </div>
+        <br />
+        <input
+          value={formData.city || ""}
+          onChange={handleChange}
+          name="city"
+          type="text"
+          placeholder="Enter City"
+        />
       <br />
-      <p>{passwordStrength}</p>
       <br />
-      <input
-        value={formData.city || ""}
+        <input
+        value={formData.county || ""}
         onChange={handleChange}
-        name="city"
+        name="county"
         type="text"
-        placeholder="Enter City"
-      />
+        placeholder="Enter County"
+        />
       <br />
-      <input
-      value={formData.county || ""}
-      onChange={handleChange}
-      name="county"
-      type="text"
-      placeholder="Enter County"
-      />
       <br />
-      <a href="/register">Not Registered?</a>
+        <a href="/login"> Already Registered?</a>
       <br />
-      <button disabled={!valid} type="submit">Submit</button>
-      </form>
+      <br />
+        <button disabled={!valid} type="submit">Submit</button>
+    </form>
   )
 }
       

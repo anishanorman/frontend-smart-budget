@@ -41,6 +41,7 @@ export default function LoginForm(props: any) {
   return(
       <form id="loginForm" onSubmit={handleSubmit}>
         <h2>Login</h2>
+        <br />
         <input
           value={formData.username || ""}
           onChange={handleChange}
@@ -49,16 +50,19 @@ export default function LoginForm(props: any) {
           placeholder="Enter Username"
         />
         <br />
+        <br />
         <input
           value={formData.password || ""}
           onChange={handleChange}
-          type="password"
           name="password"
+          type="password"
           placeholder="Enter Password"
         />
         <br />
+        <br />
         <a href="/register">Not Registered?</a>
         <br />
+        <br/>
         <button disabled={!valid} type="submit">Submit</button>
       </form>
   )
