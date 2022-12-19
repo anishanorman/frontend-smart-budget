@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
+const backEndUrl = "https://rails-orqd.onrender.com"
 
 export default function LoginForm(props: any) {
   // initialize the state variables for the form data
   const [formData, setFormData] = useState({
     username: "",
-    password: "",
+    pw_hash: "",
   })
 
   // initialize the state variable for the button useability
@@ -21,17 +22,26 @@ export default function LoginForm(props: any) {
   }
 
   // handle form submission
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(`Form data: ${JSON.stringify(formData)}`);
+    // let response: any = await fetch(`${backEndUrl}/users`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(formData)
+    // })
+    // response = await response.json()
+    // sessionStorage.setItem("auth_token", response.token)
+    // console.log(sessionStorage.getItem("auth_token"))
+    // return response
 
-    // you can add additional code here to handle the form submission, such as sending the form data to a backend server
   }
 
   // UseEffect hook  that allows you to perform side effects in function components
   useEffect(() => {
     //set more form validations here if needed
-    if (formData.username !== "" && formData.password !== "") {
+    if (formData.username !== "" && formData.pw_hash !== "") {
       setValid(true)
     } else {
       setValid(false)
@@ -52,10 +62,10 @@ export default function LoginForm(props: any) {
         <br />
         <br />
         <input
-          value={formData.password || ""}
+          value={formData.pw_hash || ""}
           onChange={handleChange}
-          name="password"
           type="password"
+          name="pw_hash"
           placeholder="Enter Password"
         />
         <br />

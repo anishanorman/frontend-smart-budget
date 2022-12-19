@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./RegisterForm.css";
 import CheckPasswordStr from "./CheckPasswordStr";
 import PasswordMeterRd from "./PasswordMeterRd";
-
+const backEndUrl = "https://rails-orqd.onrender.com"
 
 
 
@@ -10,9 +10,10 @@ export default function RegisterForm(props: any) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    password: "",
+    pw_hash: "",
     city: "",
     county: "",
+    country: "",
   });
 
   // initialize the state variable for the button useability
@@ -31,14 +32,21 @@ export default function RegisterForm(props: any) {
   }
 
   // handle form submission
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(`Form data: ${JSON.stringify(formData)}`);
-
-    // you can add additional code here to handle the form submission, such as sending the form data to a backend server
+    let response: any = await fetch(`${backEndUrl}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    response = await response.json()
+    sessionStorage.setItem("auth_token", response.token)
+    console.log(sessionStorage.getItem("auth_token"))
+    return response
   }
   
-
   // UseEffect hook  that allows you to perform certain after effects in a function components
 
   useEffect(() => {
@@ -92,13 +100,13 @@ export default function RegisterForm(props: any) {
       <br />
       <br />
         <input
-          id= "password"
-          value={formData.password || ""}
+          id="password"
+          value={formData.pw_hash || ""}
           onChange={handleChange}
-          name="password"
+          name="pw_hash"
           type="password"
           placeholder="Enter Password"
-        />
+      />
         <div id = "promt">
           <span></span>
         </div>
@@ -125,6 +133,13 @@ export default function RegisterForm(props: any) {
         placeholder="Enter County"
         />
       <br />
+      <input
+      value={formData.country || ""}
+      onChange={handleChange}
+      name="country"
+      type="text"
+      placeholder="Enter Country"
+      />
       <br />
       <a href="/login"> Already Registered?</a>
       <br />

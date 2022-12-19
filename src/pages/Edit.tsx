@@ -9,14 +9,18 @@ import { useImmer } from "use-immer"
 export default function Edit(props: any) {
 
     const [data, updateData] = useImmer({
-        "income": [{ "id": 0, "name": "Salary", "amount": 1800 }, { "id": 1, "name": "Dividends", "amount": 50}],
-        "budget_items": [
-            { "id": 0, "type": "fixed", "name": "Rent", "amount": 900 },
-            { "id": 1, "type": "fixed", "name": "Bills", "amount": 200 },
-            { "id": 2, "type": "variable", "name": "Shopping", "amount": 200 },
-            { "id": 3, "type": "variable", "name": "Coffee", "amount": 30 }
+        "income": [
+            { "income_type": "Salary", "annual": 30000, "month": 1800}
+            // ,{ "id": 1, "income_type": "Dividends", "value": 50}
+        ],
+        "budget_items_attributes": [
+            { "item_type": "fixed", "name": "Rent", "value": 900 },
+            { "item_type": "fixed", "name": "Bills", "value": 200 },
+            { "item_type": "variable", "name": "Shopping", "value": 200 },
+            { "item_type": "variable", "name": "Coffee", "value": 30 }
         ]
 })
+    console.log(data)
 
     const navigate = useNavigate()
 
@@ -27,29 +31,28 @@ export default function Edit(props: any) {
                     income: (prev.income.filter(
                         (item) => prev.income.indexOf(item) !== indexToRemove
                     )),
-                    budget_items: prev.budget_items
+                    budget_items_attributes: prev.budget_items_attributes
                 }
             })
         } else {
             updateData(prev => {
                 return {
                     income: prev.income,
-                    budget_items: (prev.budget_items.filter((item) => prev.budget_items.indexOf(item) !== indexToRemove))
+                    budget_items_attributes: (prev.budget_items_attributes.filter((item) => prev.budget_items_attributes.indexOf(item) !== indexToRemove))
                 }
             })
         }   
-
     }
 
     function increase(indexToIncrease: any) {
         updateData(prev => {
-            prev.budget_items[indexToIncrease].amount+=10
+            prev.budget_items_attributes[indexToIncrease].value+=10
         })
     }
 
     function decrease(indexToIncrease: any) {
         updateData(prev => {
-            prev.budget_items[indexToIncrease].amount-=10
+            prev.budget_items_attributes[indexToIncrease].value-=10
         })
     }
 
@@ -64,10 +67,15 @@ export default function Edit(props: any) {
     function toAllocate() {
         let total = 0
         data.income.forEach((income) => {
-            total+=income.amount
+            if (income.month) {
+                total+=income.month
+            } else {
+                total+=income.annual
+            }
+            
         })
-        data.budget_items.forEach((item) => {
-            total-=item.amount
+        data.budget_items_attributes.forEach((item) => {
+            total-=item.value
         })
         if (total>0) {
             return (`Left to allocate: £${total}`)
@@ -84,7 +92,7 @@ export default function Edit(props: any) {
             <div className="pageContent">
                 <Container header="Income" content={<MakeTable handleDelete={handleDelete} data={data.income} content="income" editable="true"/>}/>
                 <Btn sendTo="/income" className="add" content="Add +" />
-                <Container header="Outgoings" toAllocate={toAllocate()} content={<MakeTable increase={increase} decrease={decrease} handleDelete={handleDelete} data={data.budget_items} content="outgoings" editable="true"/>}/>
+                <Container header="Outgoings" toAllocate={toAllocate()} content={<MakeTable increase={increase} decrease={decrease} handleDelete={handleDelete} data={data.budget_items_attributes} content="outgoings" editable="true"/>}/>
                 <Btn sendTo="/outgoing" className="add" content="Add +" />
             </div>
             <Nav save="true" edit="false" handleSave={handleSave}/>
