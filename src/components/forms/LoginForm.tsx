@@ -24,17 +24,37 @@ export default function LoginForm(props: any) {
   // handle form submission
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // let response: any = await fetch(`${backEndUrl}/users`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(formData)
-    // })
-    // response = await response.json()
-    // sessionStorage.setItem("auth_token", response.token)
-    // console.log(sessionStorage.getItem("auth_token"))
-    // return response
+    let response: any = await fetch(`${backEndUrl}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    response = await response.json()
+    // Saves jwt token to session storage - this will need to be sent for subsequent requests.
+    sessionStorage.setItem("auth_token", response.token)
+    
+    //userInformation - contains information like username, email, address, user id etc
+    let userInformation: Object = response.user
+
+    
+    //budgetItems - contains an array of each of the budget item objects and their budget_id
+    let budgetItems: Array<Object> = response.budget_items
+
+        /* 
+        This is what a single budget_item object looks like: 
+     {
+            "id": 17,
+            "name": "Bills",
+            "value": 3020.0,
+            "budget_id": 7,
+            "created_at": "2022-12-16T10:44:22.685Z",
+            "updated_at": "2022-12-16T10:44:22.685Z",
+            "item_type": "fixed"
+        }
+    */
+    return response
 
   }
 
