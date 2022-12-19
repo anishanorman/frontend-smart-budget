@@ -126,8 +126,7 @@ export default function RegisterForm(props: any) {
         />
       <br />
       <br />
-        <a href="/login"> Already Registered?</a>
-      <br />
+      <a href="/login"> Already Registered?</a>
       <br />
         <button disabled={!valid} type="submit">Submit</button>
     </form>
