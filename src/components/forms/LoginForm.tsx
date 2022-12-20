@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 const backEndUrl = "https://rails-orqd.onrender.com"
 
+
+
 export default function LoginForm(props: any) {
   // initialize the state variables for the form data
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ export default function LoginForm(props: any) {
   const [valid, setValid] = useState(false)
 
   //handle changes to the form inputs
+  // Server refreshes after new input, this function prevents the deletion of said inputs  
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const element: HTMLInputElement = event.target;
     const { name, value } = element;

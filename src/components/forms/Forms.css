@@ -19,3 +19,11 @@ span:nth-child(1) {
   font-weight: 600;
   z-index: 2;
 }
+
+#annual{
+  display: none;
+}
+#month{
+  display: none;
+}
+
