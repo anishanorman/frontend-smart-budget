@@ -46,6 +46,7 @@ export default function LoginForm(props: any) {
     
     //userInformation - contains information like username, email, address, user id etc
     let userInformation: Object = response.user
+    console.log(response)
     
     //budgetItems - contains an array of each of the budget item objects and their budget_id
     let budgetItems: Array<Object> = response.budget_items

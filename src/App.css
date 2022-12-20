@@ -176,3 +176,12 @@ button.saveButton {
   top: 12%;
   left: 34%;
 }
+
+.tickIcon {
+  position: fixed;
+  right: 7%;
+}
+
+.tickIcon img {
+  height: 30px
+}

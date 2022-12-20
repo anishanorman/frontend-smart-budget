@@ -12,17 +12,15 @@ import {useImmer} from "use-immer"
 function App() {
 
   const [budget, updateBudget] = useImmer({
-    "id": Number,
+    "id": 0,
     "income": [],
     "budget_items_attributes": []
   })
-  console.log("app.tsx:")
-  console.log(budget)
 
   return (
          <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Index budget={budget}/>} />
+              <Route path="/" element={<Index budget={budget} updateBudget={updateBudget}/>} />
               <Route path="/edit" element={<Edit budget={budget} updateBudget={updateBudget}/>} />
               <Route path="/login" element={<Login updateBudget={updateBudget}/>} />
               <Route path="/register" element={<Register />} />

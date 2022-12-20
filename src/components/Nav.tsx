@@ -2,6 +2,7 @@ import homeButton from "../assets/home-button.png"
 import editIcon from "../assets/edit-icon-white.png"
 import Icon from "./Icon"
 import saveButton from "../assets/save-button.png"
+import tickIcon from "../assets/tick-icon.png"
 
 export default function Nav(props: any) {
     return(
@@ -14,6 +15,10 @@ export default function Nav(props: any) {
 
             {
                 props.save==="true" && (<Icon type="button" onClick={props.handleSave} className="saveButton" src={saveButton} alt="save" />)
+            }
+
+            {
+                props.done==="true" && (<Icon type="a" to="/" className="tickIcon" src={tickIcon} alt="done" />)
             }
             
         </div>
