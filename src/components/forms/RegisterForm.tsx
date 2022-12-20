@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./Forms.css";
 import CheckPasswordStr from "./CheckPasswordStr";
 import PasswordMeterRd from "./PasswordMeterRd";
+import { useNavigate } from "react-router-dom"
+
 const backEndUrl = "https://rails-orqd.onrender.com"
 
-
-
 export default function RegisterForm(props: any) {
+
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -44,7 +47,8 @@ export default function RegisterForm(props: any) {
     response = await response.json()
     sessionStorage.setItem("auth_token", response.token)
     console.log(sessionStorage.getItem("auth_token"))
-    return response
+    console.log("Register Successful!")
+    navigate("/")
   }
   
   // UseEffect hook  that allows you to perform certain after effects in a function components
