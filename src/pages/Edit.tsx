@@ -13,7 +13,8 @@ export default function Edit(props: any) {
     const navigate = useNavigate()
 
     const [data, updateData] = useImmer(props.budget)
-    console.log(data.id)
+    console.log("data:")
+    console.log(data)
 
     function handleDelete(type: any, indexToRemove: any) {
         if(type==="income") {

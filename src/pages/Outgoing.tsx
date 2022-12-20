@@ -4,13 +4,16 @@ import OutgoingForm from "../components/forms/OutgoingForm"
 import Logo from "../components/Logo"
 import Nav from "../components/Nav"
 import { useImmer } from "use-immer"
+import { useNavigate } from "react-router-dom"
 
 export default function Outgoing(props: any) {
+    
+    const navigate = useNavigate()
 
     const [formData, updateFormData] = useImmer({
         item_type: "variable",
         name: "",
-        value: null
+        value: 0
     })
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -20,11 +23,14 @@ export default function Outgoing(props: any) {
           ...prevFormData,
           [name]: value,
         }));
-        console.log(formData)
       }
 
       function handleSubmit() {
-        console.log(formData)
+        props.updateBudget(prev => {
+            prev.budget_items_attributes.push(formData)
+        })
+
+        navigate("/edit")
       }
 
 
