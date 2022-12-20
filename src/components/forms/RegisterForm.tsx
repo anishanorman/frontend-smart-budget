@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./RegisterForm.css";
+import "./Forms.css";
 import CheckPasswordStr from "./CheckPasswordStr";
 import PasswordMeterRd from "./PasswordMeterRd";
 const backEndUrl = "https://rails-orqd.onrender.com"
@@ -18,10 +18,10 @@ export default function RegisterForm(props: any) {
 
   // initialize the state variable for the button useability
   const [valid, setValid] = useState(false);
-  // initialize the state variable for password strength 
+  
 
-
-  // handle changes to the form inputs
+  // handles the changes to the form inputs
+  // Server refreshes after new input, this function prevents the deletion of said inputs  
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const element: HTMLInputElement = event.target;
     const { name, value } = element;
@@ -48,18 +48,15 @@ export default function RegisterForm(props: any) {
   }
   
   // UseEffect hook  that allows you to perform certain after effects in a function components
-
   useEffect(() => {
+    // set more form validations here if needed
+
     // checks password strength to certain condtions 
     let strength = CheckPasswordStr(formData.pw_hash);
     // Using the password strength to visual display the meter reading 
     PasswordMeterRd(strength);
-  });
 
-  useEffect(() => {
     // checks if conditions are met for the submit button to be useable
-    // set more form validations here if needed
-
     // a varriable that can only store the constructor/object's properties value.
     const formValues = Object.values(formData);
     // the varriable becomes inclusive of all properties while the function checks if the properties !==v resulting in a boolean 
@@ -89,7 +86,6 @@ export default function RegisterForm(props: any) {
         placeholder="Enter Username"
       />
       <br />
-      <br />
       <input
         value={formData.email || ""}
         onChange={handleChange}
@@ -97,7 +93,6 @@ export default function RegisterForm(props: any) {
         type="email"
         placeholder="Enter Email"
       />
-      <br />
       <br />
         <input
           id="password"
@@ -107,9 +102,9 @@ export default function RegisterForm(props: any) {
           type="password"
           placeholder="Enter Password"
       />
-        <div id = "promt">
+        {/* <div id = "promt">
           <span></span>
-        </div>
+        </div> */}
         <div id="password_meter">
           <div id="password_indicator">
             <span>Weak</span>
