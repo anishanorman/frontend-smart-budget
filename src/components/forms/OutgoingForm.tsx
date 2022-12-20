@@ -4,10 +4,6 @@ const backEndUrl = "https://rails-orqd.onrender.com"
 
 export default function OutgoingForm(props: any) {
 
-    // This formData variable is a placeholder - it should be an array of budget_item objects when we send it to backend.
-    // Each item in this array should look like this: {name: "Bills", value: 300, item_type: "fixed"}
-    const [formData, setFormData] = useState([])
-
     return(
         
         <form>

@@ -25,7 +25,6 @@ export default function MakeTable(props: any) {
                 <div className="table">
                     {
                     data.map((item: any, index: any) => {
-                        console.log(1)
                         if(item.item_type==="fixed") {
                             //fixed outgoings
                             return(

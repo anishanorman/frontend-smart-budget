@@ -67,7 +67,7 @@ body {
   font-family: "Jost"
 }
 
-#homeButton {
+.homeButton {
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -168,4 +168,11 @@ button.saveButton {
 .row {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+.homeButton img {
+  position: fixed;
+  height: 30px;
+  top: 12%;
+  left: 34%;
 }

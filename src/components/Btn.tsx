@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function Btn(props: any) {
     return(
-        <a className={props.className} href={props.sendTo}>{props.content}</a>
+        <Link to={props.to} className={props.className} onClick={props.onClick}>
+            {props.content}
+        </Link>
     )
 }

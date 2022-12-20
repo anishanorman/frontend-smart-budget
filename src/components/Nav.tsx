@@ -7,12 +7,11 @@ export default function Nav(props: any) {
     return(
         <div className="nav">
             {
-                props.edit==="true" && (<Icon type="a" href="./edit" className="editButtonWhite" src={editIcon} alt="edit" />)
+                props.edit==="true" && (<Icon type="a" to="./edit" className="editButtonWhite" src={editIcon} alt="edit" />)
             }
-            
-            <a id="homeButton" href="/">
-                <img id="filledLogo" src={homeButton} alt="Smart Budget App Logo"/>
-            </a>
+
+            <Icon type="a" to="/" className="homeButton" src={homeButton} alt="Smart Budget App Logo" />
+
             {
                 props.save==="true" && (<Icon type="button" onClick={props.handleSave} className="saveButton" src={saveButton} alt="save" />)
             }

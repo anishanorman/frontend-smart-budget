@@ -54,6 +54,9 @@ export default function LoginForm(props: any) {
     props.updateBudget(prev => {
       prev.income = incomeItems
     })
+    props.updateBudget(prev => {
+      prev.id = response.budget.id
+    })
 
         /* 
         This is what a single budget_item object looks like: 

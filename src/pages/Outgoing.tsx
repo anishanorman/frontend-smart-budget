@@ -32,8 +32,8 @@ export default function Outgoing(props: any) {
             <div className="App">
                 <Logo />
                 <div className="pageContent">
-                    <Container header="New Outgoing" content={<OutgoingForm formData={formData}updateFormData={updateFormData} handleChange={handleChange} />}/>
-                    <Btn content="Submit" sendTo="/edit" className="orangeBtn" onSubmit={handleSubmit}/>
+                    <Container header="New Outgoing" content={<OutgoingForm formData={formData} updateFormData={updateFormData} handleChange={handleChange} />}/>
+                    <Btn content="Submit" to="/edit" className="orangeBtn" onClick={handleSubmit}/>
                 </div>    
                 <Nav />             
             </div>
