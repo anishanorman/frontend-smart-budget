@@ -8,7 +8,7 @@ export default function Login(props: any) {
             <div className="App">
                 <Logo />
                 <div className="pageContent">
-                    <LoginForm />
+                    <LoginForm updateBudget={props.updateBudget}/>
                 </div>                
             </div>
         )

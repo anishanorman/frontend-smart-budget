@@ -8,21 +8,10 @@ import { useImmer } from "use-immer"
 
 export default function Edit(props: any) {
 
-    const [data, updateData] = useImmer({
-        "income": [
-            { "income_type": "Salary", "annual": 30000, "month": 1800}
-            // ,{ "id": 1, "income_type": "Dividends", "value": 50}
-        ],
-        "budget_items_attributes": [
-            { "item_type": "fixed", "name": "Rent", "value": 900 },
-            { "item_type": "fixed", "name": "Bills", "value": 200 },
-            { "item_type": "variable", "name": "Shopping", "value": 200 },
-            { "item_type": "variable", "name": "Coffee", "value": 30 }
-        ]
-})
-    console.log(data)
-
     const navigate = useNavigate()
+    console.log(props.budget)
+
+    const [data, updateData] = useImmer(props.budget)
 
     function handleDelete(type: any, indexToRemove: any) {
         if(type==="income") {

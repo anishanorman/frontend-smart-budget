@@ -9,9 +9,10 @@ export default function MakeTable(props: any) {
     var data=props.data
 
     if (!props.data || props.data.length<1) {
+        //no items
         return(
             <div className="table">
-                <div className="row">
+                <div className="emptyRow">
                     <p>(Empty)</p>
                 </div>
             </div>
@@ -19,10 +20,12 @@ export default function MakeTable(props: any) {
     } else {
 
         if (props.editable==="true") {
+            //on edit page
             return (
                 <div className="table">
                     {
                     data.map((item: any, index: any) => {
+                        console.log(1)
                         if(item.item_type==="fixed") {
                             //fixed outgoings
                             return(
@@ -53,6 +56,7 @@ export default function MakeTable(props: any) {
                                 </div>
                             )
                         } else {
+                            //income
                             return(
                                 <div className="fixedRow" key={index.toString()}>
                                     <h4>{item.income_type}</h4> 
@@ -70,14 +74,28 @@ export default function MakeTable(props: any) {
                 </div>
             )
         } else {
+            //on index
             return(
                 <div className="table">
                     {
                         data.map((item: any, index: any) => {
-                            <div className="row">
-                                <h4>{item.income_type}</h4>
-                                <p>{item.annual}</p>
-                            </div>
+                            if(item.item_type) {
+                                //Outgoings
+                                return(
+                                    <div className="row" key={index.toString()}>
+                                        <h4>{item.name}</h4>
+                                        <p>£{item.value}pcm</p>
+                                    </div>
+                                )
+                            } else {
+                                //income
+                                return(
+                                    <div className="row" key={index.toString()}>
+                                        <h4>{item.income_type}</h4> 
+                                        <p>£{item.month}pcm</p>
+                                    </div>
+                                )
+                            }
                         })
                     }
                 </div>
