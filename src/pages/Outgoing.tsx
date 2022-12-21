@@ -5,10 +5,17 @@ import Logo from "../components/Logo"
 import Nav from "../components/Nav"
 import { useImmer } from "use-immer"
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export default function Outgoing(props: any) {
     
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!props.loggedIn) {
+            navigate("/login")
+        }
+    }, [])
 
     const [formData, updateFormData] = useImmer({
         item_type: "variable",

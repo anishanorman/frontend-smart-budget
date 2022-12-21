@@ -18,7 +18,7 @@ export default function Login(props: any) {
             <div className="App">
                 <Logo />
                 <div className="pageContent">
-                    <LoginForm updateBudget={props.updateBudget}/>
+                    <LoginForm updateBudget={props.updateBudget} setLoggedIn={props.setLoggedIn}/>
                 </div>                
             </div>
         )

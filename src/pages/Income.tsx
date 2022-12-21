@@ -5,11 +5,17 @@ import Nav from "../components/Nav";
 import {useImmer} from "use-immer"
 import { useNavigate } from "react-router-dom";
 import Btn from "../components/Btn";
-import {useState} from "react"
+import { useState, useEffect } from "react"
 
 export default function Income(props: any) {
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!props.loggedIn) {
+            navigate("/login")
+        }
+    }, [])
 
     const [formData, updateFormData] = useImmer({
         "income_type": "",

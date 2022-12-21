@@ -3,10 +3,20 @@ import Container from "../components/Container";
 import Logo from "../components/Logo";
 import MakeTable from "../components/MakeTable";
 import Nav from "../components/Nav";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const backEndUrl = "https://rails-orqd.onrender.com"
 
 export default function Edit(props: any) {
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!props.loggedIn) {
+            navigate("/login")
+        }
+    }, [])
 
     function handleDelete(type: any, indexToRemove: any) {
         if(type==="income") {
