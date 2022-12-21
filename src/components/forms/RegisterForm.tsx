@@ -47,7 +47,7 @@ export default function RegisterForm(props: any) {
     response = await response.json()
     sessionStorage.setItem("auth_token", response.token)
     console.log(sessionStorage.getItem("auth_token"))
-    console.log("Register Successful!")
+    props.setLoggedIn(true)
     navigate("/")
   }
   

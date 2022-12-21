@@ -2,6 +2,8 @@ import Container from "../components/Container"
 import Logo from "../components/Logo"
 import MakeTable from "../components/MakeTable"
 import Nav from "../components/Nav"
+import { useNavigate } from "react-router-dom"
+import {useEffect} from "react"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
 
@@ -11,6 +13,14 @@ const backEndUrl = "https://rails-orqd.onrender.com"
 var data: any
 
 export default function Index(props: any) {
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!props.loggedIn) {
+            navigate("/login")
+        }
+    }, [])
 
     var budget = props.budget
 

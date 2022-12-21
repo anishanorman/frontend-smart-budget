@@ -40,13 +40,12 @@ export default function LoginForm(props: any) {
       body: JSON.stringify(formData)
     })
     response = await response.json()
-    console.log(response)
     // Saves jwt token to session storage - this will need to be sent for subsequent requests.
     sessionStorage.setItem("auth_token", response.token)
+    props.setLoggedIn(true)
     
     //userInformation - contains information like username, email, address, user id etc
     let userInformation: Object = response.user
-    console.log(response)
     
     //budgetItems - contains an array of each of the budget item objects and their budget_id
     let budgetItems: Array<Object> = response.budget_items
