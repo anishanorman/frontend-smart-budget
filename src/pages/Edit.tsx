@@ -69,9 +69,9 @@ export default function Edit(props: any) {
             <Logo />
             <div className="pageContent">
                 <Container header="Income" content={<MakeTable handleDelete={handleDelete} data={props.budget.income} content="income" editable="true"/>}/>
-                <Btn to="/income" className="add" content="Add +" />
+                <Btn to="/income" className="add orangeBtn" content="Add +" />
                 <Container header="Outgoings" toAllocate={toAllocate()} content={<MakeTable increase={increase} decrease={decrease} handleDelete={handleDelete} data={props.budget.budget_items_attributes} content="outgoings" editable="true"/>}/>
-                <Btn to="/outgoing" className="add" content="Add +" />
+                <Btn to="/outgoing" className="add orangeBtn" content="Add +" />
             </div>
             <Nav save="false" edit="false" done="true" />
         </div>
