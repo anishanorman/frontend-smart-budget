@@ -15,11 +15,11 @@ export default function Index(props: any) {
     var budget = props.budget
 
     async function handleSave() {
-        //income request
+        //incomes request
         const incomeReq:any = JSON.stringify({new_incomes: budget.income})
 
         let incomeRes: any = await fetch(`${backEndUrl}/incomes/`, {
-            method: "PUT",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 //This header contains the token sent by backend on login request
