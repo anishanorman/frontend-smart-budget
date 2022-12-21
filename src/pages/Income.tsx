@@ -7,10 +7,8 @@ import { useNavigate } from "react-router-dom";
 import Btn from "../components/Btn";
 import {useState} from "react"
 
-//Firstly why is this needed ??????????
-// secondly once agian thank you for telling me but key information concerning form function
-// You put me under review but make key changes like this !?!?!?
-// 👍
+
+// wow 👍
 
 export default function Income(props: any) {
 
