@@ -1,10 +1,10 @@
-import Container from "../components/Container";
+import Container from "../components/design/Container";
 import IncomeForm from "../components/forms/IncomeForm";
-import Logo from "../components/Logo";
-import Nav from "../components/Nav";
+import Logo from "../components/design/Logo";
+import Nav from "../components/design/Nav";
 import {useImmer} from "use-immer"
 import { useNavigate } from "react-router-dom";
-import Btn from "../components/Btn";
+import Btn from "../components/design/Btn";
 import {useState} from "react"
 
 export default function Income(props: any) {

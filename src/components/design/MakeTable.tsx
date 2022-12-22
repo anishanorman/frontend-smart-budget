@@ -1,9 +1,9 @@
 import Icon from "./Icon"
-import editIcon from "../assets/edit-icon.png"
-import deleteIcon from "../assets/delete-icon.png"
-import leftArrow from "../assets/left-arrow.png"
-import rightArrow from "../assets/right-arrow.png"
-import leftArrowGrey from "../assets/left-arrow-grey.png"
+import editIcon from "../../assets/edit-icon-white.png"
+import deleteIcon from "../../assets/delete-icon.png"
+import leftArrow from "../../assets/left-arrow.png"
+import rightArrow from "../../assets/right-arrow.png"
+import leftArrowGrey from "../../assets/left-arrow-grey.png"
 
 export default function MakeTable(props: any) {
     var data=props.data

@@ -1,7 +1,7 @@
-import Container from "../components/Container"
-import Logo from "../components/Logo"
-import MakeTable from "../components/MakeTable"
-import Nav from "../components/Nav"
+import Container from "../components/design/Container"
+import Logo from "../components/design/Logo"
+import MakeTable from "../components/design/MakeTable"
+import Nav from "../components/design/Nav"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
 

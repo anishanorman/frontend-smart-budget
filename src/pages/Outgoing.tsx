@@ -1,8 +1,8 @@
-import Btn from "../components/Btn"
-import Container from "../components/Container"
+import Btn from "../components/design/Btn"
+import Container from "../components/design/Container"
 import OutgoingForm from "../components/forms/OutgoingForm"
-import Logo from "../components/Logo"
-import Nav from "../components/Nav"
+import Logo from "../components/design/Logo"
+import Nav from "../components/design/Nav"
 import { useImmer } from "use-immer"
 import { useNavigate } from "react-router-dom"
 
