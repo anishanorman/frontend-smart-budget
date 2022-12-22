@@ -36,10 +36,8 @@ export default function Outgoing(props: any) {
         props.updateBudget(prev => {
             prev.budget_items_attributes.push(formData)
         })
-
         navigate("/edit")
       }
-
 
         return(
             <div className="App">

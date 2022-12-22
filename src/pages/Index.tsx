@@ -4,6 +4,7 @@ import MakeTable from "../components/MakeTable"
 import Nav from "../components/Nav"
 import { useNavigate } from "react-router-dom"
 import {useEffect} from "react"
+import SmartInsights from "../components/SmartInsights"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
 
@@ -42,6 +43,7 @@ export default function Index(props: any) {
         props.updateBudget(prev => {
             prev.income = incomeRes.incomes
         })
+        console.log(incomeRes)
 
         //outgoings request
         const outgoingReq:any = JSON.stringify({budget: {title: "", budget_items_attributes: props.budget.budget_items_attributes}})
@@ -80,6 +82,10 @@ export default function Index(props: any) {
           props.updateBudget(prev => {
             prev.id = outgoingRes.budget.id
           })
+          props.updateBudget(prev => {
+            prev.insights = outgoingRes.insights
+          })
+
     }
 
         return(
@@ -88,6 +94,9 @@ export default function Index(props: any) {
                 <div className="pageContent">
                     <Container header="Income" content={<MakeTable data={budget.income} editable="false"/>}/>
                     <Container header="Outgoings" content={<MakeTable data={budget.budget_items_attributes} editable="false"/>}/>
+                    <br />
+                    <br />
+                    <Container header="Insights" content={<SmartInsights data={budget.insights} />} />
                 </div>
                 <Nav save="true" edit="true" handleSave={handleSave}/>
             </div>

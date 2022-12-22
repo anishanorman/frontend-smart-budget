@@ -63,6 +63,9 @@ export default function LoginForm(props: any) {
       props.updateBudget(prev => {
         prev.id = response.budget.id
       })
+      props.updateBudget(prev => {
+        prev.insights = response.insights
+      })
 
           /* 
           This is what a single budget_item object looks like: 
@@ -76,7 +79,7 @@ export default function LoginForm(props: any) {
               "item_type": "fixed"
           }
       */
-      navigate("/edit")
+      navigate("/")
     } else {
       alert("Incorrect username or password. Please try again.")
     }

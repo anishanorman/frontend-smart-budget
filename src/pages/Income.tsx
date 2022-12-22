@@ -63,7 +63,6 @@ export default function Income(props: any) {
       }
 
       function handleSubmit() {
-        console.log(formData)
         props.updateBudget(prev => {
             prev.income.push({
                 income_type: formData.income_type,
