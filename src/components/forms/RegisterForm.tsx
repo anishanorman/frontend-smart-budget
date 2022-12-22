@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./Forms.css";
-import CheckPasswordStr from "./CheckPasswordStr";
-import PasswordMeterRd from "./PasswordMeterRd";
+import "../../css/PasswordMeter.css";
+import CheckPasswordStr from "./functions/CheckPasswordStr";
+import PasswordMeterRd from "./functions/PasswordMeterRd";
 import { useNavigate } from "react-router-dom"
 
 const backEndUrl = "https://rails-orqd.onrender.com"

@@ -1,5 +1,5 @@
 import LoginForm from "../components/forms/LoginForm";
-import Logo from "../components/Logo";
+import Logo from "../components/design/Logo";
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react";
 

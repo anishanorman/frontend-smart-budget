@@ -1,11 +1,15 @@
 import './App.css';
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom"
+import './css/App.css';
+import './css/Splash.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Edit from './pages/Edit';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Income from './pages/Income';
 import Index from './pages/Index';
 import Outgoing from './pages/Outgoing';
+import Splash from './pages/Splash'
 import {useImmer} from "use-immer"
 import {useState} from "react"
 

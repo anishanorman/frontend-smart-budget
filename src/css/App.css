@@ -5,8 +5,26 @@
   margin: 0;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(180deg, rgba(249,252,249,1) 55%, rgba(136,200,181,1) 100%);
+  background: linear-gradient(180deg, rgba(249,252,249,1) 55%, #88c8b5 100%);
 }
+#splash {
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #F5F5F5;
+}
+#splash_name{
+font-weight: 500;
+font-size: 10vw;
+font-size: 10vh;
+}
+
+
+
+
 
 #logo {
   width: 250px;
@@ -64,7 +82,6 @@ h3 {
 body {
   background: rgb(136,200,181);
   overflow: hidden;
-  font-family: "Jost"
 }
 
 .homeButton {

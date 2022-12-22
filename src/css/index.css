@@ -1,0 +1,201 @@
+body {
+    width: 400;
+    height: 800;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+    text-align: center;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, rgba(249,252,249,1) 55%, #88c8b5 100%);
+  }
+  
+  
+  
+  
+  
+  
+  #logo {
+    width: 250px;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin: 10px;
+    font-size:larger
+  }
+  
+  h3 {
+    margin: 0;
+    font-weight:normal;
+    padding: 2px
+  }
+  
+  .pageContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    overflow-y: scroll;
+    padding-bottom: 80px;
+  }
+  
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    color: white;
+    background: #2D695B;
+    width: 140px;
+    border-radius: 15px;
+    height: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  }
+  
+  .container {
+    display: grid;
+    grid-template-rows: auto / 1fr;
+    width: 75%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+  }
+  
+  .container header {
+    color: white;
+    background: #2D695B;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  body {
+    background: rgb(136,200,181);
+    overflow: hidden;
+  }
+  
+  .homeButton {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: white;
+    position: fixed;
+    left:50%;
+    transform: translateX(-50%);
+    top: -5px;
+  }
+  
+  #filledLogo {
+    height: 80%;
+    position: relative;
+    top:50%;
+    transform: translateY(-50%)
+  }
+  
+  .orangeBtn {
+    text-decoration: none;
+    color: white;
+    background-color: #DC5E28;
+    padding: 5px 15px 5px 15px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  }
+  
+  h4 {
+    margin: 0
+  }
+  
+  p {
+    margin: 0
+  }
+  
+  #regForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 65%
+  }
+  
+  #regForm input {
+    display: block;
+  }
+  
+  .icons {
+    display: flex;
+    gap:5px;
+    justify-content: right;
+  }
+  
+  .icons img {
+    height:15px;
+  }
+  
+  .icons button, .nav button,  .increaseButton, .decreaseButton {
+    all: unset;
+    cursor: pointer;
+    height: 18px;
+  }
+  
+  .editButtonWhite img, .saveButton img{
+    height: 18px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%)
+  }
+  
+  .editButtonWhite {
+    position: fixed;
+    left: 15%;
+    top: 50%;
+  }
+  
+  button.saveButton {
+    position: fixed;
+    right: 13%;
+    height: 90%;
+  }
+  
+  .variableRow, .fixedRow {
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+    margin: 10px 20px 10px 20px;
+  }
+  
+  .decreaseButton img, .increaseButton img {
+    height: 90%;
+    position: relative;
+    top:20%
+  }
+  
+  .variablevalue {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+  }
+  
+  .row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  
+  .homeButton img {
+    position: fixed;
+    height: 30px;
+    top: 12%;
+    left: 34%;
+  }
+  
+  .tickIcon {
+    position: fixed;
+    right: 7%;
+  }
+  
+  .tickIcon img {
+    height: 30px
+  }
+

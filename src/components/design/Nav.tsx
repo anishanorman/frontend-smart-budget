@@ -1,8 +1,8 @@
-import homeButton from "../assets/home-button.png"
-import editIcon from "../assets/edit-icon-white.png"
+import homeButton from "../../assets/home-button.png"
+import editIcon from "../../assets/edit-icon-white.png"
 import Icon from "./Icon"
-import saveButton from "../assets/save-button.png"
-import tickIcon from "../assets/tick-icon.png"
+import saveButton from "../../assets/save-button.png"
+import tickIcon from "../../assets/tick-icon.png"
 
 export default function Nav(props: any) {
     return(
