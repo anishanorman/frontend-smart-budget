@@ -22,10 +22,6 @@ font-size: 10vw;
 font-size: 10vh;
 }
 
-
-
-
-
 #logo {
   width: 250px;
   padding: 20px;
@@ -185,6 +181,7 @@ button.saveButton {
 .row {
   display: grid;
   grid-template-columns: 50% 50%;
+  padding: 5px;
 }
 
 .homeButton img {
@@ -201,4 +198,12 @@ button.saveButton {
 
 .tickIcon img {
   height: 30px
+}
+
+ul {
+  padding-right: 40px;
+}
+
+.incomeForm {
+  padding: 5px;
 }

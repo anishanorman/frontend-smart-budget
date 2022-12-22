@@ -32,7 +32,6 @@ export default function MakeTable(props: any) {
                                     <h4>{item.name}</h4>
                                     <p>£{item.value}pcm</p>
                                     <div className="icons">
-                                        <Icon type="a" content={item} href="./income" className="editButton" src={editIcon} alt="edit" />
                                         <Icon type="button" onClick={() => props.handleDelete(props.content, index)}className="deleteButton" src={deleteIcon} alt="delete" />
                                     </div>
                                 </div>
@@ -49,7 +48,6 @@ export default function MakeTable(props: any) {
                                         <Icon type="button" onClick={() => props.increase(index)}className="increaseButton" src={rightArrow} alt="increase" />
                                     </div>
                                     <div className="icons">
-                                        <Icon type="a" content={item} href="./income" className="editButton" src={editIcon} alt="edit" />
                                         <Icon type="button" onClick={() => props.handleDelete(props.content, index)}className="deleteButton" src={deleteIcon} alt="delete" />
                                     </div>
                                 </div>
@@ -62,7 +60,6 @@ export default function MakeTable(props: any) {
                                     <p>£{item.month}pcm</p>
                                     
                                     <div className="icons">
-                                        <Icon type="a" content={item} href="./income" className="editButton" src={editIcon} alt="edit" />
                                         <Icon type="button" onClick={() => props.handleDelete(props.content, index)}className="deleteButton" src={deleteIcon} alt="delete" />
                                     </div>
                                 </div>

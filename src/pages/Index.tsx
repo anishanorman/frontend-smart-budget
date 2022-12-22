@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import {useEffect} from "react"
-import SmartInsights from "../components/SmartInsights"
+import SmartInsights from "../components/design/SmartInsights"
 import Container from "../components/design/Container"
 import Logo from "../components/design/Logo"
 import MakeTable from "../components/design/MakeTable"

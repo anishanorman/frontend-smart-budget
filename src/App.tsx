@@ -1,5 +1,3 @@
-import './App.css';
-import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom"
 import './css/App.css';
 import './css/Splash.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
