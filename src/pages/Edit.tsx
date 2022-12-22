@@ -26,7 +26,8 @@ export default function Edit(props: any) {
                     income: (prev.income.filter(
                         (item) => prev.income.indexOf(item) !== indexToRemove
                     )),
-                    budget_items_attributes: prev.budget_items_attributes
+                    budget_items_attributes: prev.budget_items_attributes,
+                    insights: prev.insights
                 }
             })
         } else {
@@ -34,7 +35,8 @@ export default function Edit(props: any) {
                 return {
                     id: prev.id,
                     income: prev.income,
-                    budget_items_attributes: (prev.budget_items_attributes.filter((item) => prev.budget_items_attributes.indexOf(item) !== indexToRemove))
+                    budget_items_attributes: (prev.budget_items_attributes.filter((item) => prev.budget_items_attributes.indexOf(item) !== indexToRemove)),
+                    insights: prev.insights
                 }
             })
         }   

@@ -15,8 +15,10 @@ function App() {
   const [budget, updateBudget] = useImmer({
     "id": 0,
     "income": [],
-    "budget_items_attributes": []
+    "budget_items_attributes": [],
+    "insights": []
   })
+  console.log(budget)
 
   const [loggedIn, setLoggedIn] = useState(false)
 

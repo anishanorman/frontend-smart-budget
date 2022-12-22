@@ -28,11 +28,8 @@ export default function OutgoingForm(props: any) {
                             onChange={props.handleChange}
                             name="value"
                             type="text"
-                            placeholder="£"
+                            placeholder="(Monthly)"
                         />
-                        <br />
-                        <input type="radio" value="month" name="period" onChange={props.handleChange} /> Per Month
-                        <input type="radio" value="annual" name="period" onChange={props.handleChange}/> Per Year
                     </div>
                     
             }
