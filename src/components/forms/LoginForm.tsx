@@ -31,7 +31,8 @@ export default function LoginForm(props: any) {
 
   // handle form submission
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault()
+    
     let response: any = await fetch(`${backEndUrl}/users/login`, {
       method: "POST",
       headers: {
@@ -39,41 +40,47 @@ export default function LoginForm(props: any) {
       },
       body: JSON.stringify(formData)
     })
-    response = await response.json()
-    // Saves jwt token to session storage - this will need to be sent for subsequent requests.
-    sessionStorage.setItem("auth_token", response.token)
-    props.setLoggedIn(true)
-    
-    //userInformation - contains information like username, email, address, user id etc
-    let userInformation: Object = response.user
-    
-    //budgetItems - contains an array of each of the budget item objects and their budget_id
-    let budgetItems: Array<Object> = response.budget_items
-    let incomeItems: Array<Object> = response.incomes
+    if (response.ok) {
+      response = await response.json()
+      console.log(response)
+      // Saves jwt token to session storage - this will need to be sent for subsequent requests.
+      sessionStorage.setItem("auth_token", response.token)
+      props.setLoggedIn(true)
+      
+      //userInformation - contains information like username, email, address, user id etc
+      let userInformation: Object = response.user
+      
+      //budgetItems - contains an array of each of the budget item objects and their budget_id
+      let budgetItems: Array<Object> = response.budget_items
+      let incomeItems: Array<Object> = response.incomes
 
-    props.updateBudget(prev => {
-      prev.budget_items_attributes = budgetItems
-    })
-    props.updateBudget(prev => {
-      prev.income = incomeItems
-    })
-    props.updateBudget(prev => {
-      prev.id = response.budget.id
-    })
+      props.updateBudget(prev => {
+        prev.budget_items_attributes = budgetItems
+      })
+      props.updateBudget(prev => {
+        prev.income = incomeItems
+      })
+      props.updateBudget(prev => {
+        prev.id = response.budget.id
+      })
 
-        /* 
-        This is what a single budget_item object looks like: 
-     {
-            "id": 17,
-            "name": "Bills",
-            "value": 3020.0,
-            "budget_id": 7,
-            "created_at": "2022-12-16T10:44:22.685Z",
-            "updated_at": "2022-12-16T10:44:22.685Z",
-            "item_type": "fixed"
-        }
-    */
-    navigate("/edit")
+          /* 
+          This is what a single budget_item object looks like: 
+      {
+              "id": 17,
+              "name": "Bills",
+              "value": 3020.0,
+              "budget_id": 7,
+              "created_at": "2022-12-16T10:44:22.685Z",
+              "updated_at": "2022-12-16T10:44:22.685Z",
+              "item_type": "fixed"
+          }
+      */
+      navigate("/edit")
+    } else {
+      alert("Incorrect username or password. Please try again.")
+    }
+    
 
   }
 
