@@ -8,9 +8,6 @@ export default function Login(props: any) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!props.loggedIn) {
-            navigate("/splash")
-        }
         if (props.loggedIn) {
             navigate("/splash")
         }
