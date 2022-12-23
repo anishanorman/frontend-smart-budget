@@ -13,7 +13,7 @@ export default function Income(props: any) {
 
     useEffect(() => {
         if (!props.loggedIn) {
-            navigate("/login")
+            navigate("/splash")
         }
     }, [])
 

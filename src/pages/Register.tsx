@@ -15,7 +15,7 @@ export default function Register(props: any) {
     }, [])
 
     return(
-        <div className="App">
+        <div className="WelcomeForm">
             <Logo />
             <div className="pageContent">
                 <RegisterForm setLoggedIn={props.setLoggedIn}/>

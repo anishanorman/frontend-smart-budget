@@ -19,7 +19,7 @@ export default function Index(props: any) {
 
     useEffect(() => {
         if (!props.loggedIn) {
-            navigate("/login")
+            navigate("/splash")
         }
     }, [])
 
