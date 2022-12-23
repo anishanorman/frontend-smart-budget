@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./Forms.css";
-import CheckPasswordStr from "./CheckPasswordStr";
-import PasswordMeterRd from "./PasswordMeterRd";
+import "../../css/PasswordMeter.css";
+import CheckPasswordStr from "./functions/CheckPasswordStr";
+import PasswordMeterRd from "./functions/PasswordMeterRd";
 import { useNavigate } from "react-router-dom"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
@@ -80,9 +80,8 @@ export default function RegisterForm(props: any) {
   // render the form
   return (
     <form id="registerForm" onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      <br />
-      <input
+      <h3>Create a new account</h3>
+      <input className="input"
         value={formData.username || ""}
         onChange={handleChange}
         name="username"
@@ -90,7 +89,7 @@ export default function RegisterForm(props: any) {
         placeholder="Enter Username"
       />
       <br />
-      <input
+      <input className="input"
         value={formData.email || ""}
         onChange={handleChange}
         name="email"
@@ -98,7 +97,7 @@ export default function RegisterForm(props: any) {
         placeholder="Enter Email"
       />
       <br />
-        <input
+        <input className="input"
           id="password"
           value={formData.pw_hash || ""}
           onChange={handleChange}
@@ -115,7 +114,8 @@ export default function RegisterForm(props: any) {
           </div>
         </div>
         <br />
-        <input
+        <br/>
+        <input className="input"
           value={formData.city || ""}
           onChange={handleChange}
           name="city"
@@ -123,7 +123,7 @@ export default function RegisterForm(props: any) {
           placeholder="Enter City"
         />
       <br />
-        <input
+        <input className="input"
         value={formData.county || ""}
         onChange={handleChange}
         name="county"
@@ -131,7 +131,7 @@ export default function RegisterForm(props: any) {
         placeholder="Enter County"
         />
       <br />
-      <input
+      <input className="input"
       value={formData.country || ""}
       onChange={handleChange}
       name="country"
@@ -140,8 +140,9 @@ export default function RegisterForm(props: any) {
       />
       <br />
       <a href="/login"> Already Registered?</a>
+      <br/>
       <br />
-        <button disabled={!valid} type="submit">Submit</button>
+        <button disabled={!valid} className="orangeBtn" id="length" type="submit">Submit</button>
     </form>
   )
 }

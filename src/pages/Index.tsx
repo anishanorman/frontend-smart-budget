@@ -1,10 +1,10 @@
-import Container from "../components/Container"
-import Logo from "../components/Logo"
-import MakeTable from "../components/MakeTable"
-import Nav from "../components/Nav"
 import { useNavigate } from "react-router-dom"
 import {useEffect} from "react"
-import SmartInsights from "../components/SmartInsights"
+import SmartInsights from "../components/design/SmartInsights"
+import Container from "../components/design/Container"
+import Logo from "../components/design/Logo"
+import MakeTable from "../components/design/MakeTable"
+import Nav from "../components/design/Nav"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
 
@@ -19,7 +19,7 @@ export default function Index(props: any) {
 
     useEffect(() => {
         if (!props.loggedIn) {
-            navigate("/login")
+            navigate("/splash")
         }
     }, [])
 

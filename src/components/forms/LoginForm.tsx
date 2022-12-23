@@ -47,8 +47,8 @@ export default function LoginForm(props: any) {
       sessionStorage.setItem("auth_token", response.token)
       props.setLoggedIn(true)
       
-      //userInformation - contains information like username, email, address, user id etc
-      let userInformation: Object = response.user
+      
+      
       
       //budgetItems - contains an array of each of the budget item objects and their budget_id
       let budgetItems: Array<Object> = response.budget_items
@@ -67,18 +67,7 @@ export default function LoginForm(props: any) {
         prev.insights = response.insights
       })
 
-          /* 
-          This is what a single budget_item object looks like: 
-      {
-              "id": 17,
-              "name": "Bills",
-              "value": 3020.0,
-              "budget_id": 7,
-              "created_at": "2022-12-16T10:44:22.685Z",
-              "updated_at": "2022-12-16T10:44:22.685Z",
-              "item_type": "fixed"
-          }
-      */
+
       navigate("/")
     } else {
       alert("Incorrect username or password. Please try again.")
@@ -99,9 +88,8 @@ export default function LoginForm(props: any) {
   
   return(
       <form id="loginForm" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <br />
-        <input
+        <h3>Please login to continue </h3>
+        <input className="input"
           value={formData.username || ""}
           onChange={handleChange}
           name="username"
@@ -110,7 +98,7 @@ export default function LoginForm(props: any) {
         />
         <br />
         <br />
-        <input
+        <input className="input"
           value={formData.pw_hash || ""}
           onChange={handleChange}
           type="password"
@@ -119,10 +107,10 @@ export default function LoginForm(props: any) {
         />
         <br />
         <br />
-        <a href="/register">Not Registered?</a>
-        <br />
+        <a href="/register">New user?</a>
         <br/>
-        <button disabled={!valid} type="submit">Submit</button>
+        <br/>
+        <button disabled={!valid} className ="orangeBtn" id= "length" type="submit">Submit</button>
       </form>
   )
 }

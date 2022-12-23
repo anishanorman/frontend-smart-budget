@@ -1,10 +1,11 @@
-import Btn from "../components/Btn";
-import Container from "../components/Container";
-import Logo from "../components/Logo";
-import MakeTable from "../components/MakeTable";
-import Nav from "../components/Nav";
+import Btn from "../components/design/Btn";
+import Container from "../components/design/Container";
+import Logo from "../components/design/Logo";
+import MakeTable from "../components/design/MakeTable";
+import Nav from "../components/design/Nav";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+
 
 const backEndUrl = "https://rails-orqd.onrender.com"
 
@@ -14,7 +15,7 @@ export default function Edit(props: any) {
 
     useEffect(() => {
         if (!props.loggedIn) {
-            navigate("/login")
+            navigate("/splash")
         }
     }, [])
 

@@ -1,9 +1,9 @@
 import Icon from "./Icon"
-import editIcon from "../assets/edit-icon.png"
-import deleteIcon from "../assets/delete-icon.png"
-import leftArrow from "../assets/left-arrow.png"
-import rightArrow from "../assets/right-arrow.png"
-import leftArrowGrey from "../assets/left-arrow-grey.png"
+import editIcon from "../../assets/edit-icon-white.png"
+import deleteIcon from "../../assets/delete-icon.png"
+import leftArrow from "../../assets/left-arrow.png"
+import rightArrow from "../../assets/right-arrow.png"
+import leftArrowGrey from "../../assets/left-arrow-grey.png"
 
 export default function MakeTable(props: any) {
     var data=props.data
@@ -32,7 +32,6 @@ export default function MakeTable(props: any) {
                                     <h4>{item.name}</h4>
                                     <p>£{item.value}pcm</p>
                                     <div className="icons">
-                                        <Icon type="a" content={item} href="./income" className="editButton" src={editIcon} alt="edit" />
                                         <Icon type="button" onClick={() => props.handleDelete(props.content, index)}className="deleteButton" src={deleteIcon} alt="delete" />
                                     </div>
                                 </div>
@@ -49,7 +48,6 @@ export default function MakeTable(props: any) {
                                         <Icon type="button" onClick={() => props.increase(index)}className="increaseButton" src={rightArrow} alt="increase" />
                                     </div>
                                     <div className="icons">
-                                        <Icon type="a" content={item} href="./income" className="editButton" src={editIcon} alt="edit" />
                                         <Icon type="button" onClick={() => props.handleDelete(props.content, index)}className="deleteButton" src={deleteIcon} alt="delete" />
                                     </div>
                                 </div>
@@ -62,7 +60,6 @@ export default function MakeTable(props: any) {
                                     <p>£{item.month}pcm</p>
                                     
                                     <div className="icons">
-                                        <Icon type="a" content={item} href="./income" className="editButton" src={editIcon} alt="edit" />
                                         <Icon type="button" onClick={() => props.handleDelete(props.content, index)}className="deleteButton" src={deleteIcon} alt="delete" />
                                     </div>
                                 </div>

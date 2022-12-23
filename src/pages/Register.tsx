@@ -1,4 +1,4 @@
-import Logo from "../components/Logo";
+import Logo from "../components/design/Logo";
 import RegisterForm from "../components/forms/RegisterForm";
 import {useNavigate} from "react-router-dom"
 import { useEffect } from "react";
@@ -15,7 +15,7 @@ export default function Register(props: any) {
     }, [])
 
     return(
-        <div className="App">
+        <div className="WelcomeForm">
             <Logo />
             <div className="pageContent">
                 <RegisterForm setLoggedIn={props.setLoggedIn}/>

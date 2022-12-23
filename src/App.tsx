@@ -1,11 +1,12 @@
-import './App.css';
-import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom"
+import './css/App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Edit from './pages/Edit';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Income from './pages/Income';
 import Index from './pages/Index';
 import Outgoing from './pages/Outgoing';
+import Splash from './pages/Splash'
 import {useImmer} from "use-immer"
 import {useState} from "react"
 
@@ -25,6 +26,7 @@ function App() {
   return (
          <BrowserRouter>
             <Routes>
+              <Route path="/splash" element={<Splash  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
               <Route path="/" element={<Index budget={budget} updateBudget={updateBudget} loggedIn={loggedIn}/>} />
               <Route path="/edit" element={<Edit budget={budget} updateBudget={updateBudget} loggedIn={loggedIn}/>} />
               <Route path="/login" element={<Login updateBudget={updateBudget} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
