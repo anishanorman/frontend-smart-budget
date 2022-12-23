@@ -1,5 +1,4 @@
 import './css/App.css';
-import './css/Splash.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Edit from './pages/Edit';
 import Register from './pages/Register';
@@ -27,6 +26,7 @@ function App() {
   return (
          <BrowserRouter>
             <Routes>
+              <Route path="/splash" element={<Splash  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
               <Route path="/" element={<Index budget={budget} updateBudget={updateBudget} loggedIn={loggedIn}/>} />
               <Route path="/edit" element={<Edit budget={budget} updateBudget={updateBudget} loggedIn={loggedIn}/>} />
               <Route path="/login" element={<Login updateBudget={updateBudget} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />

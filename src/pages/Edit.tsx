@@ -15,7 +15,7 @@ export default function Edit(props: any) {
 
     useEffect(() => {
         if (!props.loggedIn) {
-            navigate("/login")
+            navigate("/splash")
         }
     }, [])
 
