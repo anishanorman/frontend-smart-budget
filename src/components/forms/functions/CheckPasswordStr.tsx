@@ -2,7 +2,7 @@ let x =0;
 export default function CheckPasswordStr(password: any) {
   var str = x;
 
-  if (password.length > 6) {
+  if (password.length > 5) {
     str++;
   }
   if (password.length > 8) {
