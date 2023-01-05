@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "../../css/PasswordMeter.css";
+import "../../css/Registration.css";
+import EmailReq from "./functions/EmailReq";
+import {EmailValid} from"./functions/EmailReq";
 import CheckPasswordStr from "./functions/CheckPasswordStr";
 import PasswordMeterRd from "./functions/PasswordMeterRd";
+import PasswordCriteria from "./functions/PasswordCriteria";
+import PasswordReq from "./functions/PasswordReq";
+import {PasswordActive}  from "./functions/PasswordReq";
 import { useNavigate } from "react-router-dom"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
@@ -19,19 +24,36 @@ export default function RegisterForm(props: any) {
     country: "",
   });
 
-  // initialize the state variable for the button useability
+  // Initialize the state variable for the button useability
   const [valid, setValid] = useState(false);
   
 
-  // handles the changes to the form inputs
+  // Handles the changes to the form inputs
   // Server refreshes after new input, this function prevents the deletion of said inputs  
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const element: HTMLInputElement = event.target;
-    const { name, value } = element;
+    let { name, value } = element;
+  
+  // Remove the space character from the value
+  if (name === "username" || name === "email" || name === "pw_hash") {
+    if (value.includes(" ")) {
+      value = value.replace(" ", "");
+    }
+  }
+    
+  // Make sure the first character is capitalized and only contain letters and spaces
+  if (name === "county" || name === "city" || name === "country") {
+    if (!/^[A-Z]/.test(value)) {
+      value = value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    value = value.replace(/[^A-Za-z ]/g, '');
+  }
+    
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
+
   }
 
   // handle form submission
@@ -44,31 +66,46 @@ export default function RegisterForm(props: any) {
       },
       body: JSON.stringify(formData)
     })
-    response = await response.json()
-    sessionStorage.setItem("auth_token", response.token)
-    console.log(sessionStorage.getItem("auth_token"))
-    props.setLoggedIn(true)
-    navigate("/")
+    if (response.ok) {
+      response = await response.json()
+      console.log(response)
+      sessionStorage.setItem("auth_token", response.token)
+      props.setLoggedIn(true)
+      navigate("/")
+    } else {
+      alert("The email has already been registered. Please try a different email or Already Registered")
+    }
   }
   
   // UseEffect hook  that allows you to perform certain after effects in a function components
   useEffect(() => {
-    // set more form validations here if needed
-
-    // checks password strength to certain condtions 
+    // Set more form validations here if needed
+    
+    //Storing formData into varriables
+    let password = formData.pw_hash;
+    let email =  formData.email;
+    
+   
+    //Checks email has met certain condtions
+    EmailReq(email)
+    // Checks password strength to certain condtions 
     let strength = CheckPasswordStr(formData.pw_hash);
     // Using the password strength to visual display the meter reading 
     PasswordMeterRd(strength);
+    // Using the password input to visual display the criteria
+    PasswordReq(password);
 
-    // checks if conditions are met for the submit button to be useable
-    // a varriable that can only store the constructor/object's properties value.
+    // Checks if conditions are met for the submit button to be useable
+    // A varriable that stores the constructor/object's properties value.
     const formValues = Object.values(formData);
-    // the varriable becomes inclusive of all properties while the function checks if the properties !==v resulting in a boolean 
-    const isFormFilled= formValues.every(checkValue)
+
+    // The function checks if the properties !=="" 
     function checkValue(x:any){
       return x !== ""
     }
-    if (isFormFilled === true){
+    const isFormFilled= formValues.every(checkValue)
+  
+    if (isFormFilled === true && PasswordActive()=== true && EmailValid () === true){
       setValid(true)
     }else{
       setValid(false)
@@ -87,15 +124,19 @@ export default function RegisterForm(props: any) {
         name="username"
         type="text"
         placeholder="Enter Username"
-      />
+      /><span className="ast">*</span>
       <br />
       <input className="input"
+        id="email"
         value={formData.email || ""}
         onChange={handleChange}
         name="email"
-        type="email"
+        type="text"
         placeholder="Enter Email"
-      />
+      /><span className="ast">*</span>
+      <div  id="email_prompt">
+            Email must have a valid format example@mail.com
+        </div>
       <br />
         <input className="input"
           id="password"
@@ -104,14 +145,15 @@ export default function RegisterForm(props: any) {
           name="pw_hash"
           type="password"
           placeholder="Enter Password"
-      />
-        {/* <div id = "promt">
-          <span></span>
-        </div> */}
+        /><span className="ast">*</span>
+        <div  id="password_prompt">
+            Password must meet all complexity requirements 
+        </div>
         <div id="password_meter">
           <div id="password_indicator">
             <span>Weak</span>
           </div>
+          <PasswordCriteria/> 
         </div>
         <br />
         <br/>
@@ -121,7 +163,7 @@ export default function RegisterForm(props: any) {
           name="city"
           type="text"
           placeholder="Enter City"
-        />
+        /><span className="ast">*</span>
       <br />
         <input className="input"
         value={formData.county || ""}
@@ -129,7 +171,7 @@ export default function RegisterForm(props: any) {
         name="county"
         type="text"
         placeholder="Enter County"
-        />
+        /><span className="ast">*</span>
       <br />
       <input className="input"
       value={formData.country || ""}
@@ -137,7 +179,7 @@ export default function RegisterForm(props: any) {
       name="country"
       type="text"
       placeholder="Enter Country"
-      />
+      /><span className="ast">*</span>
       <br />
       <a href="/login"> Already Registered?</a>
       <br/>

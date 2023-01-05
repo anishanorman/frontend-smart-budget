@@ -1,0 +1,81 @@
+.input{
+  border: 2px solid #2D695B;
+  border-radius: 10px;
+  width: 80%;
+  padding: 3px;
+} 
+.ast{
+  color: #DC5E28;
+}
+
+#email_prompt{
+  border-radius: 10px; 
+  font-size: 11px;
+  color: #DC5E28;
+  font-weight: 600;
+  text-align: center;
+  display:none; 
+}
+
+#password_prompt{
+  border-radius: 10px; 
+  font-size: 11px;
+  color: #DC5E28;
+  font-weight: 600;
+  text-align: center;
+  display:none; 
+}
+
+#password_meter{
+  position: relative;
+  width: 90%;
+  height: 20px;
+  margin-top: 5px;
+  margin-bottom: 85px;
+  border-radius: 10px; 
+  text-align: center;
+  background-color: #f2f2f2;
+  display: none ; 
+  z-index: 0;
+  font-size: 15px;
+  
+}
+  
+span:nth-child(1) {
+  position: relative;
+  font-weight: 600;
+  z-index: 2;
+}
+
+#password_criteria{
+  margin-top: 10px;
+  width: 90%;
+  padding: 10px; 
+  border-radius: 10px;
+  font-size: 13px;
+  transform: translateX(5%);
+  background-color: white;
+  border: 2px solid #DC5E28;
+  color: #DC5E28;
+  text-align: left;
+}
+
+  
+#upper_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+#number_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+#special_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+#character_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+
+
