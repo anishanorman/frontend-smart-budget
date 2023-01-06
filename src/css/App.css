@@ -28,6 +28,7 @@
   height: 100vh;
   width: 100vw;
   background-color: #F5F5F5;
+  
 }
 
 #logoIcon {
@@ -115,10 +116,6 @@
   
 }
 
-#AMC {
-  width: 15vw ;
-  transform: translate( 70%, -50%);
-}
 
 #logo {
   width: 250px;

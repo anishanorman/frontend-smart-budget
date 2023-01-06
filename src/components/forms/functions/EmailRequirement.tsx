@@ -1,4 +1,4 @@
-export function EmailValid(){
+export function EmailValidation(){
   const emailField:HTMLElement = document.getElementById('email')!;
   if (emailField.classList.contains('active')) {
     return true
@@ -24,7 +24,7 @@ export default function EmailReq(email) {
   emailField?.addEventListener("keyup", emailCheck);
 
   emailField?.addEventListener("focus", function () {
-    if (EmailValid () === true ){
+    if (EmailValidation () === true ){
       emailPrompt.style.display = "none";
     }
     else{

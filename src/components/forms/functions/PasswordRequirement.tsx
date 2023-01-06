@@ -1,4 +1,4 @@
-export function PasswordActive() {
+export function PasswordValidation() {
   const upperCrt:HTMLElement = document.getElementById('upper_criteria')!;
   const numberCrt:HTMLElement = document.getElementById('number_criteria')!;
   const specialCrt:HTMLElement = document.getElementById('special_criteria')!;
@@ -11,7 +11,7 @@ export function PasswordActive() {
   }
 }
 
-export default function PasswordReq(password: string) {
+export default function PasswordRequirement(password: string) {
   const passwordPrompt:HTMLElement = document.getElementById ('password_prompt')!;
   const passwordField:HTMLElement = document.getElementById('password')!;
   const upperCrt:HTMLElement = document.getElementById('upper_criteria')!;
@@ -34,7 +34,7 @@ export default function PasswordReq(password: string) {
   }
 
   passwordField?.addEventListener("focus", function () {
-    if (PasswordActive () === true ){
+    if (PasswordValidation () === true ){
       passwordPrompt.style.display = "none";
     }
     else{

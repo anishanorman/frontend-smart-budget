@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../css/Registration.css";
-import EmailReq from "./functions/EmailReq";
-import {EmailValid} from"./functions/EmailReq";
+import EmailRequirement from "./functions/EmailRequirement";
+import {EmailValidation} from"./functions/EmailRequirement";
 import CheckPasswordStr from "./functions/CheckPasswordStr";
 import PasswordMeterRd from "./functions/PasswordMeterRd";
 import PasswordCriteria from "./functions/PasswordCriteria";
-import PasswordReq from "./functions/PasswordReq";
-import {PasswordActive}  from "./functions/PasswordReq";
+import PasswordRequirement from "./functions/PasswordRequirement";
+import {PasswordValidation}  from "./functions/PasswordRequirement";
 import { useNavigate } from "react-router-dom"
 
 const backEndUrl = "https://rails-orqd.onrender.com"
@@ -87,13 +87,13 @@ export default function RegisterForm(props: any) {
     
    
     //Checks email has met certain condtions
-    EmailReq(email)
+    EmailRequirement(email)
     // Checks password strength to certain condtions 
     let strength = CheckPasswordStr(formData.pw_hash);
     // Using the password strength to visual display the meter reading 
     PasswordMeterRd(strength);
     // Using the password input to visual display the criteria
-    PasswordReq(password);
+    PasswordRequirement(password)
 
     // Checks if conditions are met for the submit button to be useable
     // A varriable that stores the constructor/object's properties value.
@@ -105,7 +105,7 @@ export default function RegisterForm(props: any) {
     }
     const isFormFilled= formValues.every(checkValue)
   
-    if (isFormFilled === true && PasswordActive()=== true && EmailValid () === true){
+    if (isFormFilled === true && PasswordValidation()=== true && EmailValidation () === true){
       setValid(true)
     }else{
       setValid(false)
