@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import LogoIcon from "../components/design/LogoIcon";
-import AMC from "../assets/AMC.png";
 
 function revealLogo() {
     // hide the small squares
@@ -47,10 +46,9 @@ export default function Splash(props: any) {
             <span className ="small_square"></span>
             <span className ="small_square"></span>
             </div>
-            <h3 id = 'splash_name'>
+            <h3 className = "Sorry Ani"id = 'splash_name'>
                 Smart Spending
             </h3>
-            <img id="AMC" src={AMC} alt="AMC 4 life -sorry Ani"/>
         </div>
     )
 }
