@@ -9,7 +9,7 @@ export default function Login(props: any) {
 
     useEffect(() => {
         if (props.loggedIn) {
-            navigate("/")
+            navigate("/splash")
         }
     }, [])
     

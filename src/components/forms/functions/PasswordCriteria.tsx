@@ -1,13 +1,15 @@
 export default function PasswordCriteria() {
   
   return (
-  <div id = "password_policies">
-    <span id = "character_policy">Contains 8 Character</span>
-    <br />
-    <span id ="number_policy"> Contains Number</span>
-    <br />
-    <span id="upper_policy"> Contains Uppercase</span>
-    <br />
-    <span id="special_policy"> Contains Special</span>
-  </div>)
+    <div id = "password_criteria">
+      <span></span>
+      <span id ="number_criteria"> Contains A Number</span>
+      <br/>
+      <span id="upper_criteria"> Contains A Uppercase</span>
+      <br/>
+      <span id="special_criteria"> Contains A Special</span>
+      <br/>
+      <span id = "character_criteria"> Contains 9 Characters</span>
+    </div>
+  )
 }

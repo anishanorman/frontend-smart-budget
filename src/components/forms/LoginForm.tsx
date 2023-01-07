@@ -70,9 +70,8 @@ export default function LoginForm(props: any) {
 
       navigate("/")
     } else {
-      alert("Incorrect username or password. Please try again.")
+      alert("Either incorrect login details or user does not exist. Please try again or New User")
     }
-    
 
   }
 

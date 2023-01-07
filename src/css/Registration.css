@@ -1,0 +1,154 @@
+.input{
+  border: 2px solid #2D695B;
+  border-radius: 10px;
+  width: 80%;
+  padding: 3px;
+} 
+.ast{
+  color: #DC5E28;
+}
+#verify_animation{
+  position: relative;
+  top: 3%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width:0;
+  height:0;
+  padding: 3px;
+  background-color: transparent;
+  margin: 0%;
+}
+
+#loading_animation{
+  z-index: 0;
+  opacity: 1;
+  display: none;
+
+}
+#container {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes animation {
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
+  }
+}
+#spinner {
+  transform-origin: center;
+  animation-name: animation;
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier;
+  animation-iteration-count: infinite;
+}
+
+.confirmation{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+#cross_confirmed{
+  transform: translate(-30%, -70%);
+  opacity: 0;
+  z-index: 1;
+
+}
+#tick_confirmed{
+  transform: translate(-30%, -70%);
+  opacity: 0;
+  z-index: 2;
+}
+#loading_animation .confirmation {
+  transition: opacity 0.5s, transform 0.3s;
+}
+
+#username_prompt{
+  border-radius: 10px; 
+  font-size: 11px;
+  color: #DC5E28;
+  font-weight: 600;
+  text-align: center;
+  display:none; 
+}
+
+#email_prompt{
+  border-radius: 10px; 
+  font-size: 11px;
+  color: #DC5E28;
+  font-weight: 600;
+  text-align: center;
+  display:none; 
+}
+
+#password_prompt{
+  border-radius: 10px; 
+  font-size: 11px;
+  color: #DC5E28;
+  font-weight: 600;
+  text-align: center;
+  display:none; 
+}
+
+#password_meter{
+  position: relative;
+  width: 90%;
+  height: 20px;
+  margin-top: 5px;
+  margin-bottom: 85px;
+  border-radius: 10px; 
+  text-align: center;
+  background-color: #f2f2f2;
+  display: none ; 
+  z-index: 0;
+  font-size: 15px;
+  
+}
+  
+span:nth-child(1) {
+  position: relative;
+  font-weight: 600;
+  z-index: 2;
+}
+
+#password_criteria{
+  margin-top: 10px;
+  width: 90%;
+  padding: 10px; 
+  border-radius: 10px;
+  font-size: 13px;
+  transform: translateX(5%);
+  background-color: white;
+  border: 2px solid #DC5E28;
+  color: #DC5E28;
+  text-align: left;
+}
+
+  
+#upper_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+#number_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+#special_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+#character_criteria.active {
+  color:#2d6930;
+  font-weight: 600;
+}
+
+
