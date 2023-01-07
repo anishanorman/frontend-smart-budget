@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../css/Registration.css";
+import UsernameRequirement from "./functions/UsernameRequirement"
+import VerifyUserAnime from "./functions/VerifyUserAnime";
 import EmailRequirement from "./functions/EmailRequirement";
 import {EmailValidation} from"./functions/EmailRequirement";
 import CheckPasswordStr from "./functions/CheckPasswordStr";
@@ -84,12 +86,16 @@ export default function RegisterForm(props: any) {
     //Storing formData into varriables
     let password = formData.pw_hash;
     let email =  formData.email;
-    
-   
-    //Checks email has met certain condtions
+    let username = formData.username
+
+    //Checks username has met certain criteria
+    UsernameRequirement (username)
+    //Checks email has met certain criteria
     EmailRequirement(email)
-    // Checks password strength to certain condtions 
-    let strength = CheckPasswordStr(formData.pw_hash);
+
+    //rework
+    // Checks password strength to certain criteria 
+    let strength = CheckPasswordStr(password);
     // Using the password strength to visual display the meter reading 
     PasswordMeterRd(strength);
     // Using the password input to visual display the criteria
@@ -118,13 +124,17 @@ export default function RegisterForm(props: any) {
   return (
     <form id="registerForm" onSubmit={handleSubmit}>
       <h3>Create a new account</h3>
-      <input className="input"
-        value={formData.username || ""}
-        onChange={handleChange}
-        name="username"
-        type="text"
-        placeholder="Enter Username"
-      /><span className="ast">*</span>
+        <VerifyUserAnime/><input className="input"
+          value={formData.username || ""}
+          onChange={handleChange}
+          id ="username"
+          name="username"
+          type="text"
+          placeholder="Enter Username"
+        /><span className="ast">*</span>
+        <div id="username_prompt">
+            Checking if username is avaliable
+        </div>
       <br />
       <input className="input"
         id="email"
@@ -135,7 +145,7 @@ export default function RegisterForm(props: any) {
         placeholder="Enter Email"
       /><span className="ast">*</span>
       <div  id="email_prompt">
-            Email must have a valid format example@mail.com
+          Email must have a valid format example@mail.com
         </div>
       <br />
         <input className="input"
@@ -147,7 +157,7 @@ export default function RegisterForm(props: any) {
           placeholder="Enter Password"
         /><span className="ast">*</span>
         <div  id="password_prompt">
-            Password must meet all complexity requirements 
+          Password must meet all complexity requirements 
         </div>
         <div id="password_meter">
           <div id="password_indicator">
@@ -180,6 +190,7 @@ export default function RegisterForm(props: any) {
       type="text"
       placeholder="Enter Country"
       /><span className="ast">*</span>
+      <br />
       <br />
       <a href="/login"> Already Registered?</a>
       <br/>

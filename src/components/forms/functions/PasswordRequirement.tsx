@@ -48,34 +48,44 @@ export default function PasswordRequirement(password: string) {
   });
 
 
-  function PasswordUpper() {
+  function passwordUpper() {
     if(upperCrt){
       upperCrt.classList.toggle('active', /[A-Z]/.test(password));
     }
     checkValidation()
   }
-  function PasswordNumber() {
+  function passwordNumber() {
     if(numberCrt){
       numberCrt.classList.toggle('active', /[0-9]/.test(password));
     }
     checkValidation()
   }
-  function PasswordSpc() {
+  function passwordSpc() {
     if(specialCrt){
       specialCrt.classList.toggle('active', /[^A-Za-z0-9]/.test(password));
     }
     checkValidation()
   }
-  function PasswordChar() {
+  function passwordChar() {
     if(characterCrt){
       characterCrt.classList.toggle('active', password.length >= 9);
     }
     checkValidation()
   }
-  passwordField?.addEventListener("keyup", PasswordUpper);
-  passwordField?.addEventListener("keyup", PasswordNumber);
-  passwordField?.addEventListener("keyup", PasswordSpc);
-  passwordField?.addEventListener("keyup", PasswordChar);
+
+  
+  passwordField?.addEventListener("keydown", function(){
+    passwordUpper();
+    passwordNumber();
+    passwordSpc ();
+    passwordChar();
+  });
+  passwordField?.addEventListener("keyup", function(){
+    passwordUpper();
+    passwordNumber();
+    passwordSpc ();
+    passwordChar();
+  });
 
 }
 
